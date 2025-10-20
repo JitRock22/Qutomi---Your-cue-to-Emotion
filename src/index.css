@@ -12,10 +12,12 @@ html{
 }
 
 @theme{
- --color-primary-color: #6C63FF;   /* cute purple */
+  /* --color- */
+ --color-primary-color: #080808;   /* cute purple */
   --color-secondary-color: #FF6584; /* pink accent */
   --color-bg-color: #F8F9FA;        /* light gray background */
-  --color-text-color: #333333;      /* main text */
+  --color-text-color: #F361B0; 
+  --color-text-onclick:#E60076;     /* main text */
   --color-input-bg: #FFFFFF;         /* input field background */
   --color-input-border: #E0E0E0;    /* input field border */
   --color-btn-hover: #574BFF;       /* darker primary on hover */
