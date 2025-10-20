@@ -2,7 +2,7 @@ import { account } from '../config/appwriteConfig';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import HomeSkeleton from '../components/HomeSkeleton';
+import HomeSkeleton from '../components/Homeskeleton';
 import Navbar from '../components/Navbar';
 
 const Home = ({ setIsLoggedIn }) => {
