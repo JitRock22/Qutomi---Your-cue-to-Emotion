@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/signup';
 import ResetPassword from "./pages/Resetpassword";
 import Home from './pages/Home';
+import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
         <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
           <Route path="/home" element={<Home setIsLoggedIn={setIsLoggedIn} />} />
         </Route>
-
+        <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+          <Route path="/suggestions" element={<SuggestionPage />} />
+        </Route>
         {/* Public routes */}
         <Route path="/" element={<Landing />} />
         <Route path="/reset-password" element={<ResetPassword />} />
@@ -35,6 +38,7 @@ function App() {
           path="/signup"
           element={isLoggedIn ? <Navigate to="/home" /> : <Signup />}
         />
+           {/* <Route path="/suggestions" element={<SuggestionPage />} /> */}
       </Routes>
     </Router>
   );

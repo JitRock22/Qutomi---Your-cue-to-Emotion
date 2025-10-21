@@ -31,7 +31,7 @@
 //       <Navbar setIsLoggedIn={setIsLoggedIn} />
 //       <h1 className="text-3xl font-bold mb-6">Welcome to Home Page!</h1>
 //       <p className="mb-6 text-gray-700">You are successfully logged in 🎉</p>
-    
+
 //     </motion.div>
 //   );
 // };
@@ -39,12 +39,19 @@
 // export default Home;
 
 
+// Home.jsx
+
 import { account } from '../config/appwriteConfig';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import HomeSkeleton from '../components/Homeskeleton';
 import Navbar from '../components/Navbar';
+import Banner from '../components/Banner';
+import About from '../components/Aboutsection';
+import Features from '../components/Features';
+import Suggestion from '../components/suggestion';
+import { FaChevronDown } from 'react-icons/fa'; // NEW: Import the arrow icon
 
 const Home = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -58,54 +65,82 @@ const Home = ({ setIsLoggedIn }) => {
     }
   }, []);
 
+  // NEW: Function to handle smooth scrolling
+  const handleScrollDown = () => {
+    // Scroll by the height of the banner container
+    const banner = document.getElementById("banner-container");
+    if (banner) {
+      window.scrollTo({
+        top: banner.offsetHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+
   if (loading) return <HomeSkeleton />;
 
   return (
     <div
-  className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
-  style={{ backgroundColor: '#080808' }}
->
-  <Navbar setIsLoggedIn={setIsLoggedIn} />
-
-  {/* Neon glow blobs */}
-  <div className="absolute -top-20 -right-20 w-72 h-72 bg-[#F361B0]/10 rounded-full blur-3xl animate-pulse"></div>
-  <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#E60076]/10 rounded-full blur-3xl animate-pulse"></div>
-
-  {/* Main content card with motion */}
-  <motion.div
-    className="mt-20 text-center p-8 sm:p-10 rounded-3xl shadow-2xl bg-[#111]/70 backdrop-blur-lg border border-[#F361B0]/20 w-[90%] max-w-lg z-10"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, ease: 'easeOut' }}
-  >
-    <motion.h1
-      className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-[#F361B0] to-[#E60076] text-transparent bg-clip-text"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.2 }}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
+      style={{ backgroundColor: "#080808" }}
     >
-      Welcome to Qutomi 🌸
-    </motion.h1>
+      <Navbar setIsLoggedIn={setIsLoggedIn} />
 
-    <p className="text-gray-300 mb-6 text-sm sm:text-base">
-      You’re now part of the world of intelligent companions 💖
-    </p>
+      {/* Background glow blobs */}
+      <motion.div
+        className="absolute -top-20 -right-20 w-72 h-72 bg-[#F361B0]/10 rounded-full blur-3xl"
+        animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-0 w-80 h-80 bg-[#E60076]/10 rounded-full blur-3xl"
+        animate={{ y: [0, -15, 0], x: [0, 15, 0] }}
+        transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+      />
 
-    <motion.button
-      onClick={() => navigate('/dashboard')}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="px-6 py-3 rounded-xl font-semibold transition-all text-white bg-gradient-to-r from-[#F361B0] to-[#E60076] hover:shadow-[0_0_20px_#F361B0]/70"
-    >
-      Explore Dashboard →
-    </motion.button>
-  </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        // className="relative z-10 sm:mt-10 sm:pt-10 w-full px-4 sm:px-6"
+        className="relative z-10 pt-20 sm:mt-10 sm:pt-10 w-full px-4 sm:px-6"
+      >
+        <div id="banner-container" className="rounded-3xl overflow-hidden w-full sm:h-[70vh] md:h-[80vh] lg:h-[85vh] max-w-[95vw] mx-auto">
+          <Banner />
+        </div>
+        <motion.div
+          onClick={handleScrollDown}
+          className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 cursor-pointer"
+          animate={{ y: ["0%", "20%", "0%"] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <FaChevronDown className="text-white/50 text-3xl" />
+        </motion.div>
+      </motion.div>
 
-  <span className="text-stone-500 mt-4 z-10">
-    *No Dashboard is there till now ...
-  </span>
-</div>
+      {/* NEW: Bouncing Arrow Indicator */}
+      {/* <motion.div
+        onClick={handleScrollDown}
+        className="absolute z-20 bottom-10 left-1/2 -translate-x-1/2 cursor-pointer"
+        animate={{
+          y: ["0%", "20%", "0%"],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <FaChevronDown className="text-white/50 text-3xl" />
+      </motion.div> */}
 
+
+
+      <About />
+      <Features />
+      <Suggestion />
+    </div>
   );
 };
 

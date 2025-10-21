@@ -260,7 +260,7 @@ const Navbar = ({ setIsLoggedIn }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-0 mt-3 w-72 p-5 rounded-2xl backdrop-blur-xl border border-[#F361B0]/20 bg-[#111]/80 shadow-2xl flex flex-col gap-4 text-sm"
+              className="absolute right-0 mt-3 w-72 p-5 rounded-2xl backdrop-blur-xl border border-[#F361B0]/20 bg-[#111]/90 shadow-2xl flex flex-col gap-4 text-sm"
             >
               {/* Verification Badge */}
               <div
