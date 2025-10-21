@@ -316,7 +316,7 @@ const Navbar = ({ setIsLoggedIn }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleLogout}
-                className="mt-2 py-2 rounded-lg font-semibold text-white transition-colors w-full bg-[#222] hover:bg-[#E60076]"
+                className="mt-2 py-2 rounded-lg font-semibold text-white transition-colors w-full border-gray-500 bg-text-color hover:bg-[#E60076]"
               >
                 Logout
               </motion.button>

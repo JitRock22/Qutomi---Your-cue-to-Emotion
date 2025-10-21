@@ -24,9 +24,9 @@ function App() {
         <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
           <Route path="/home" element={<Home setIsLoggedIn={setIsLoggedIn} />} />
         </Route>
-        <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+        {/* <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
           <Route path="/suggestions" element={<SuggestionPage />} />
-        </Route>
+        </Route> */}
         {/* Public routes */}
         <Route path="/" element={<Landing />} />
         <Route path="/reset-password" element={<ResetPassword />} />
@@ -38,7 +38,7 @@ function App() {
           path="/signup"
           element={isLoggedIn ? <Navigate to="/home" /> : <Signup />}
         />
-           {/* <Route path="/suggestions" element={<SuggestionPage />} /> */}
+           <Route path="/suggestions" element={<SuggestionPage />} />
       </Routes>
     </Router>
   );
