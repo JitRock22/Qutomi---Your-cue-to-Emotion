@@ -222,7 +222,7 @@ const Navbar = ({ setIsLoggedIn }) => {
         onClick={() => navigate("/home")}
       >
         <img
-          src={Logo}
+          src="/Fevicon.png"
           alt="Qutomi Logo"
           className="h-9 w-9 rounded-lg border border-[#F361B0]/50 object-cover"
         />

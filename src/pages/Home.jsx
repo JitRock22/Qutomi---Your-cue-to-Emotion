@@ -51,6 +51,7 @@ import Banner from '../components/Banner';
 import About from '../components/Aboutsection';
 import Features from '../components/Features';
 import Suggestion from '../components/suggestion';
+import Footer from '../components/Footer';
 import { FaChevronDown } from 'react-icons/fa'; // NEW: Import the arrow icon
 
 const Home = ({ setIsLoggedIn }) => {
@@ -140,6 +141,7 @@ const Home = ({ setIsLoggedIn }) => {
       <About />
       <Features />
       <Suggestion />
+      <Footer/>
     </div>
   );
 };
