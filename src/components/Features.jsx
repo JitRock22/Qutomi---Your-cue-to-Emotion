@@ -244,7 +244,7 @@ const ImageCarouselWithDots = () => {
 
 const Features = () => {
   return (
-    <div className="w-full bg-[#080808] py-24 px-4 sm:px-6 z-10 overflow-hidden relative">
+    <div id="features" className="w-full bg-[#080808] py-24 px-4 sm:px-6 z-10 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.div
