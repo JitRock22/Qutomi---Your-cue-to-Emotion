@@ -1,4 +1,3 @@
-// // Navbar.jsx
 // import { useState, useEffect, useRef } from "react";
 // import Logo from "../assets/cutomi_logo.jpeg";
 // import { useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@
 //   const profileRef = useRef();
 //   const navigate = useNavigate();
 
-//   // Fetch user info on mount
+//   // Fetch user info
 //   useEffect(() => {
 //     const fetchUser = async () => {
 //       try {
@@ -26,7 +25,7 @@
 //     fetchUser();
 //   }, []);
 
-//   // Handle logout
+//   // Logout
 //   const handleLogout = async () => {
 //     try {
 //       await account.deleteSession({ sessionId: "current" });
@@ -38,11 +37,11 @@
 //     }
 //   };
 
-//   // Send email verification
+//   // Send verification
 //   const handleSendVerification = async () => {
 //     try {
 //       await account.createVerification({
-//         url: "http://localhost:5173/login", // redirect after verification
+//         url: "http://localhost:5173/login",
 //       });
 //       setVerificationSent(true);
 //     } catch (err) {
@@ -50,7 +49,7 @@
 //     }
 //   };
 
-//   // Close popup if clicked outside
+//   // Close profile popup if clicked outside
 //   useEffect(() => {
 //     const handleClickOutside = (event) => {
 //       if (profileRef.current && !profileRef.current.contains(event.target)) {
@@ -62,27 +61,49 @@
 //   }, []);
 
 //   return (
-//     <nav className="w-full bg-white shadow-md px-6 py-3 flex justify-between items-center fixed top-0 z-50">
+//     <nav
+//       className="w-full px-6 py-3 flex justify-between items-center fixed top-0 z-50 backdrop-blur-lg border-b border-[#F361B0]/20"
+//       style={{
+//         backgroundColor: "rgba(8,8,8,0.9)",
+//       }}
+//     >
 //       {/* Logo */}
-//       <div className="flex items-center cursor-pointer" onClick={() => navigate("/home")}>
+//       <div
+//         className="flex items-center cursor-pointer select-none"
+//         onClick={() => navigate("/home")}
+//       >
 //         <img
-//           src={Logo}
+//           src="/Fevicon.png"
 //           alt="Qutomi Logo"
-//           className="h-8  w-full rounded-md"
+//           className="h-9 w-9 rounded-lg border border-[#F361B0]/50 object-cover"
 //         />
-//         {/* <span className="ml-2 font-bold text-xl text-purple-600">Qutomi</span> */}
+//        <span
+//   className="ml-3 font-extrabold text-lg sm:text-xl tracking-wide text-transparent bg-clip-text"
+//   style={{
+//     backgroundImage: "linear-gradient(90deg, #F361B0, #E60076)",
+//   }}
+// >
+//   Qutomi
+// </span>
+
 //       </div>
 
-//       {/* Profile Icon */}
+//       {/* Profile Section */}
 //       <div className="relative" ref={profileRef}>
-//         <button
-//           className="h-10 w-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg"
+//         <motion.button
+//           whileHover={{ scale: 1.1 }}
+//           whileTap={{ scale: 0.95 }}
 //           onClick={() => setOpenProfile(!openProfile)}
+//           className="h-10 w-10 rounded-full text-white font-semibold flex items-center justify-center shadow-lg"
+//           style={{
+//             background: "linear-gradient(135deg, #F361B0, #E60076)",
+//             boxShadow: "0 0 12px #F361B0AA",
+//           }}
 //         >
 //           {user?.name ? user.name[0].toUpperCase() : "U"}
-//         </button>
+//         </motion.button>
 
-//         {/* Profile Popup */}
+//         {/* Profile Dropdown */}
 //         <AnimatePresence>
 //           {openProfile && (
 //             <motion.div
@@ -90,52 +111,66 @@
 //               animate={{ opacity: 1, scale: 1, y: 0 }}
 //               exit={{ opacity: 0, scale: 0.8, y: -10 }}
 //               transition={{ duration: 0.2 }}
-//               className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-xl p-4 flex flex-col gap-3 text-sm"
+//               className="absolute right-0 mt-3 w-72 p-5 rounded-2xl backdrop-blur-xl border border-[#F361B0]/20 bg-[#111]/90 shadow-2xl flex flex-col gap-4 text-sm"
 //             >
-//               {/* Verification Pill */}
-//               <div className="absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded-full border"
-//                    style={{
-//                      color: user?.emailVerification ? "#16a34a" : "#6b7280",
-//                      borderColor: user?.emailVerification ? "#16a34a" : "#6b7280",
-//                    }}
+//               {/* Verification Badge */}
+//               <div
+//                 className="absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded-full border"
+//                 style={{
+//                   color: user?.emailVerification ? "#16a34a" : "#9CA3AF",
+//                   borderColor: user?.emailVerification ? "#16a34a" : "#9CA3AF",
+//                 }}
 //               >
 //                 {user?.emailVerification ? "Verified" : "Not Verified"}
 //               </div>
 
 //               <div>
-//                 <p className="text-gray-500">Username:</p>
-//                 <p className="font-semibold">{user?.name || "Anonymous"}</p>
+//                 <p className="text-gray-400">Username</p>
+//                 <p className="text-white font-semibold">
+//                   {user?.name || "Anonymous"}
+//                 </p>
 //               </div>
 
 //               <div>
-//                 <p className="text-gray-500">Account Created:</p>
-//                 <p className="font-semibold">
-//                   {user?.$createdAt ? new Date(user.$createdAt).toLocaleDateString() : "-"}
+//                 <p className="text-gray-400">Account Created</p>
+//                 <p className="text-gray-200">
+//                   {user?.$createdAt
+//                     ? new Date(user.$createdAt).toLocaleDateString()
+//                     : "-"}
 //                 </p>
 //               </div>
 
-//               {/* Show verification button if not verified */}
+//               {/* Email verification */}
 //               {!user?.emailVerification && !verificationSent && (
-//                 <button
+//                 <motion.button
+//                   whileHover={{ scale: 1.03 }}
+//                   whileTap={{ scale: 0.95 }}
 //                   onClick={handleSendVerification}
-//                   className="mt-2 py-2 px-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors"
+//                   className="mt-1 py-2 rounded-lg font-semibold text-white transition-colors w-full"
+//                   style={{
+//                     background:
+//                       "linear-gradient(135deg, #F361B0, #E60076)",
+//                     boxShadow: "0 0 10px #F361B0AA",
+//                   }}
 //                 >
-//                   Send Verification Email
-//                 </button>
+//                   Verify Email
+//                 </motion.button>
 //               )}
 
 //               {verificationSent && (
-//                 <p className="text-green-600 text-sm mt-1">
-//                   Verification email sent! Check your inbox.
+//                 <p className="text-green-400 text-sm mt-1 text-center">
+//                   ✅ Verification link sent!
 //                 </p>
 //               )}
 
-//               <button
+//               <motion.button
+//                 whileHover={{ scale: 1.03 }}
+//                 whileTap={{ scale: 0.95 }}
 //                 onClick={handleLogout}
-//                 className="mt-2 py-2 px-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-semibold transition-colors"
+//                 className="mt-2 py-2 rounded-lg font-semibold text-white transition-colors w-full border-gray-500 bg-text-color hover:bg-[#E60076]"
 //               >
 //                 Logout
-//               </button>
+//               </motion.button>
 //             </motion.div>
 //           )}
 //         </AnimatePresence>
@@ -146,19 +181,21 @@
 
 // export default Navbar;
 
-
 import { useState, useEffect, useRef } from "react";
-import Logo from "../assets/cutomi_logo.jpeg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { account } from "../config/appwriteConfig";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaUser, FaSignOutAlt, FaEnvelope, FaCheck, FaHome, FaLightbulb } from "react-icons/fa";
 
 const Navbar = ({ setIsLoggedIn }) => {
   const [user, setUser] = useState(null);
   const [openProfile, setOpenProfile] = useState(false);
   const [verificationSent, setVerificationSent] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const profileRef = useRef();
+  const mobileMenuRef = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Fetch user info
   useEffect(() => {
@@ -198,131 +235,269 @@ const Navbar = ({ setIsLoggedIn }) => {
     }
   };
 
-  // Close profile popup if clicked outside
+  // Close dropdowns if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setOpenProfile(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Scroll to section or navigate
+  const handleNavigation = (path) => {
+    if (path.startsWith('#')) {
+      // Scroll to section
+      const sectionId = path.substring(1);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setMobileMenuOpen(false);
+    } else {
+      // Regular navigation
+      navigate(path);
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const navigationItems = [
+    { name: "Home", path: "#home", icon: <FaHome className="text-sm" /> },
+    // { name: "About", path: "#about", icon: <FaUser className="text-sm" /> },
+    // { name: "Features", path: "#features", icon: <FaLightbulb className="text-sm" /> },
+    // { name: "Goals", path: "#goals", icon: <FaCheck className="text-sm" /> },
+    { name: "Suggestions", path: "#suggestion", icon: <FaLightbulb className="text-sm" /> },
+  ];
+
   return (
-    <nav
-      className="w-full px-6 py-3 flex justify-between items-center fixed top-0 z-50 backdrop-blur-lg border-b border-[#F361B0]/20"
-      style={{
-        backgroundColor: "rgba(8,8,8,0.9)",
-      }}
-    >
-      {/* Logo */}
-      <div
-        className="flex items-center cursor-pointer select-none"
-        onClick={() => navigate("/home")}
-      >
-        <img
-          src="/Fevicon.png"
-          alt="Qutomi Logo"
-          className="h-9 w-9 rounded-lg border border-[#F361B0]/50 object-cover"
-        />
-       <span
-  className="ml-3 font-extrabold text-lg sm:text-xl tracking-wide text-transparent bg-clip-text"
-  style={{
-    backgroundImage: "linear-gradient(90deg, #F361B0, #E60076)",
-  }}
->
-  Qutomi
-</span>
+    <nav className="w-full px-4 sm:px-6 py-3 flex justify-between items-center fixed top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-gradient-to-b from-[#080808]/95 to-[#080808]/90">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#F361B0]/5 to-[#00FFFF]/5 pointer-events-none" />
 
-      </div>
-
-      {/* Profile Section */}
-      <div className="relative" ref={profileRef}>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
+      <div className="flex items-center justify-between w-full relative z-10">
+        {/* Logo */}
+        <motion.div
+          className="flex items-center cursor-pointer select-none group"
+          onClick={() => handleNavigation("#hero")}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setOpenProfile(!openProfile)}
-          className="h-10 w-10 rounded-full text-white font-semibold flex items-center justify-center shadow-lg"
-          style={{
-            background: "linear-gradient(135deg, #F361B0, #E60076)",
-            boxShadow: "0 0 12px #F361B0AA",
-          }}
         >
-          {user?.name ? user.name[0].toUpperCase() : "U"}
-        </motion.button>
+          <div className="relative">
+            <img
+              src="/Fevicon.png"
+              alt="Qutomi Logo"
+              className="h-10 w-10 rounded-xl border border-white/20 object-cover shadow-lg"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#F361B0]/20 to-[#00FFFF]/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300" />
+          </div>
+          <span className="ml-3 font-bold text-xl bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
+            Qutomi
+          </span>
+        </motion.div>
 
-        {/* Profile Dropdown */}
-        <AnimatePresence>
-          {openProfile && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute right-0 mt-3 w-72 p-5 rounded-2xl backdrop-blur-xl border border-[#F361B0]/20 bg-[#111]/90 shadow-2xl flex flex-col gap-4 text-sm"
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-4">
+          {navigationItems.map((item) => (
+            <motion.button
+              key={item.name}
+              onClick={() => handleNavigation(item.path)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-all duration-300 hover:bg-white/5"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {/* Verification Badge */}
-              <div
-                className="absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded-full border"
-                style={{
-                  color: user?.emailVerification ? "#16a34a" : "#9CA3AF",
-                  borderColor: user?.emailVerification ? "#16a34a" : "#9CA3AF",
-                }}
+              {item.icon}
+              <span className="font-medium">{item.name}</span>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden relative" ref={mobileMenuRef}>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:border-[#F361B0]/50 transition-all duration-300"
+          >
+            <div className="flex flex-col gap-1">
+              <div className={`w-4 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+              <div className={`w-4 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
+              <div className={`w-4 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            </div>
+          </motion.button>
+
+          {/* Mobile Menu Dropdown */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute right-0 mt-3 w-64 p-4 rounded-2xl backdrop-blur-xl border border-white/10 bg-[#111]/95 shadow-2xl flex flex-col gap-2"
               >
-                {user?.emailVerification ? "Verified" : "Not Verified"}
-              </div>
+                {/* Navigation Items */}
+                {navigationItems.map((item) => (
+                  <motion.button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.path)}
+                    className="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 w-full text-left"
+                    whileHover={{ x: 5 }}
+                  >
+                    {item.icon}
+                    <span className="font-medium">{item.name}</span>
+                  </motion.button>
+                ))}
 
-              <div>
-                <p className="text-gray-400">Username</p>
-                <p className="text-white font-semibold">
-                  {user?.name || "Anonymous"}
-                </p>
-              </div>
+                {/* User info and Logout in mobile menu */}
+                <div className="border-t border-white/10 pt-3 mt-2 space-y-3">
+                  <div className="flex items-center gap-3 px-3 py-2">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] flex items-center justify-center text-white text-sm font-bold">
+                      {user?.name ? user.name[0].toUpperCase() : "U"}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white text-sm font-medium truncate">
+                        {user?.name || "Anonymous"}
+                      </p>
+                      <p className="text-gray-400 text-xs truncate">
+                        {user?.email || ""}
+                      </p>
+                    </div>
+                  </div>
 
-              <div>
-                <p className="text-gray-400">Account Created</p>
-                <p className="text-gray-200">
-                  {user?.$createdAt
-                    ? new Date(user.$createdAt).toLocaleDateString()
-                    : "-"}
-                </p>
-              </div>
+                  {/* Mobile Logout Button */}
+                  {/* Mobile Logout Button - Centered */}
+                  <motion.button
+                    onClick={handleLogout}
+                    className="flex items-center justify-center gap-3 px-3 py-3 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-400/10 transition-all duration-300 w-full border border-red-400/20 hover:border-red-400/40"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <FaSignOutAlt />
+                    <span className="font-medium">Logout</span>
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-              {/* Email verification */}
-              {!user?.emailVerification && !verificationSent && (
+        {/* Desktop Profile Section */}
+        <div className="hidden md:block relative" ref={profileRef}>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setOpenProfile(!openProfile)}
+            className="h-12 w-12 rounded-xl text-white font-semibold flex items-center justify-center shadow-lg relative group"
+            style={{
+              background: "linear-gradient(135deg, #F361B0, #FF9CDA)",
+              boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
+            }}
+          >
+            {user?.name ? user.name[0].toUpperCase() : "U"}
+
+            {/* Online Indicator */}
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-[#080808] rounded-full" />
+          </motion.button>
+
+          {/* Profile Dropdown */}
+          <AnimatePresence>
+            {openProfile && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute right-0 mt-3 w-80 p-6 rounded-2xl backdrop-blur-xl border border-white/10 bg-[#111]/95 shadow-2xl space-y-4"
+              >
+                {/* Header */}
+                <div className="flex items-center gap-4 pb-4 border-b border-white/10">
+                  <div className="h-14 w-14 rounded-xl bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                    {user?.name ? user.name[0].toUpperCase() : "U"}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-semibold text-lg truncate">
+                      {user?.name || "Anonymous"}
+                    </p>
+                    <p className="text-gray-400 text-sm truncate">
+                      {user?.email || ""}
+                    </p>
+                  </div>
+
+                  {/* Verification Badge */}
+                  <div
+                    className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold border ${user?.emailVerification
+                        ? "text-green-400 border-green-400/50 bg-green-400/10"
+                        : "text-yellow-400 border-yellow-400/50 bg-yellow-400/10"
+                      }`}
+                  >
+                    {user?.emailVerification ? <FaCheck className="text-xs" /> : <FaEnvelope className="text-xs" />}
+                    {user?.emailVerification ? "Verified" : "Unverified"}
+                  </div>
+                </div>
+
+                {/* Account Info */}
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-gray-400 text-sm">Account Created</p>
+                    <p className="text-white font-medium">
+                      {user?.$createdAt
+                        ? new Date(user.$createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })
+                        : "-"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Email verification */}
+                {!user?.emailVerification && !verificationSent && (
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleSendVerification}
+                    className="w-full py-3 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2"
+                    style={{
+                      background: "linear-gradient(135deg, #F361B0, #FF9CDA)",
+                      boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
+                    }}
+                  >
+                    <FaEnvelope />
+                    Verify Email
+                  </motion.button>
+                )}
+
+                {verificationSent && (
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-green-400/10 border border-green-400/20">
+                    <FaCheck className="text-green-400 text-sm" />
+                    <p className="text-green-400 text-sm">Verification link sent to your email!</p>
+                  </div>
+                )}
+
+                {/* Logout Button with Red/Pink Theme */}
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSendVerification}
-                  className="mt-1 py-2 rounded-lg font-semibold text-white transition-colors w-full"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleLogout}
+                  className="w-full py-3 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2"
                   style={{
-                    background:
-                      "linear-gradient(135deg, #F361B0, #E60076)",
-                    boxShadow: "0 0 10px #F361B0AA",
-                  }}
+  background: "linear-gradient(135deg, #F361B0, #E60076)",
+  boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
+}}
                 >
-                  Verify Email
+                  <FaSignOutAlt />
+                  Logout
                 </motion.button>
-              )}
-
-              {verificationSent && (
-                <p className="text-green-400 text-sm mt-1 text-center">
-                  ✅ Verification link sent!
-                </p>
-              )}
-
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleLogout}
-                className="mt-2 py-2 rounded-lg font-semibold text-white transition-colors w-full border-gray-500 bg-text-color hover:bg-[#E60076]"
-              >
-                Logout
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </nav>
   );

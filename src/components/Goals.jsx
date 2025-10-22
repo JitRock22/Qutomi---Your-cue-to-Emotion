@@ -16,17 +16,18 @@ const goals = [
     gradient: "from-cyan-400 to-blue-500",
   },
   {
-    icon: <FaHandsHelping />,
-    title: "Give Back With Every Unit Sold",
-    text: "5% of every Qutomi sold goes to orphan children's education and wellbeing. Together, we can make technology that truly matters.",
-    gradient: "from-purple-500 to-indigo-600",
-  },
-  {
     icon: <FaLightbulb />,
     title: "Innovate With Purpose & Passion",
     text: "We continuously push boundaries in AI and emotional intelligence to create meaningful experiences that enrich lives.",
     gradient: "from-amber-400 to-orange-500",
   },
+  {
+    icon: <FaHandsHelping />,
+    title: "Give Back With Every Unit Sold",
+    text: "5% of every Qutomi sold goes to orphan children's education and wellbeing. Together, we can make technology that truly matters.",
+    gradient: "from-purple-500 to-indigo-600",
+  },
+  
 ];
 
 const Goals = () => {
@@ -82,7 +83,7 @@ const Goals = () => {
             <span className="text-white/80 text-xs font-medium">Our Mission</span>
           </motion.div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             Beyond Technology,
             <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
               Towards Humanity
