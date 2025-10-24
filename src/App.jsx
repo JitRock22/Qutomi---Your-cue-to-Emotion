@@ -7,7 +7,7 @@ import ResetPassword from "./pages/Resetpassword";
 import Home from './pages/Home';
 import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
-import SuccessPage from './pages/SuccessPage';
+import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/ErrorPage';
 
 function App() {
