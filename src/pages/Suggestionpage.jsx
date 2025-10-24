@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaHeart, FaStar, FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SuggestionPage = () => {
+    const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         gmail: "",
@@ -44,26 +47,55 @@ const SuggestionPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submission triggered");
+        console.log("Form submission started");
+        setIsSubmitting(true);
 
-        const dataToSend = { ...formData };
-        console.log("Prepared data to send:", dataToSend);
+        
+        const now = new Date();
+        const date = now.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const time = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const localTime = `${date} ${time}`;
+        // Output: 24/10/2025 12:45:37 pm
+
+
+        const dataToSend = {
+            timestamp: localTime,
+            ...formData
+        };
 
         try {
-            console.log("Sending data to Google Apps Script...");
+            console.log("Sending to:", import.meta.env.VITE_WEB_APP_URL);
+
             await fetch(import.meta.env.VITE_WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(dataToSend),
             });
-            alert("✨ Thanks! Your response has been saved.");
-        } catch (err) {
-            console.error("Error while submitting form:", err);
-            alert("⚠️ Oops! Something went wrong while saving your response.");
-        }
 
-        console.log("handleSubmit finished");
+            console.log("Request sent successfully");
+
+            // Reset form
+            setFormData({
+                name: "", gmail: "", city: "", ageGroup: "", useLocation: "",
+                locationOther: "", designAppeal: 5, designStyle: "",
+                valuableFeatures: [], newFeatureRequest: "", comfortPrice: "",
+                preOrder: "", prioritySlot: "", finalThoughts: "",
+            });
+
+            // Navigate to success page
+            navigate("/success");
+
+        } catch (err) {
+            console.error("Full error:", err);
+
+            // Navigate to error page
+            navigate("/error");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const featureOptions = [
@@ -84,7 +116,7 @@ const SuggestionPage = () => {
     const getSliderColor = (value) => {
         const colors = {
             1: "from-red-500 to-orange-500",
-            2: "from-orange-500 to-yellow-500", 
+            2: "from-orange-500 to-yellow-500",
             3: "from-yellow-500 to-green-500",
             4: "from-green-500 to-blue-500",
             5: "from-blue-500 to-purple-500"
@@ -94,6 +126,47 @@ const SuggestionPage = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#080808] via-[#0f0f0f] to-[#1a1a1a] py-8 px-4 sm:px-6 relative overflow-hidden">
+            {/* Loading Overlay */}
+            {isSubmitting && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"
+                >
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 text-center backdrop-blur-md"
+                    >
+                        {/* Spinner */}
+                        <div className="w-16 h-16 border-4 border-[#F361B0] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+
+                        {/* Text */}
+                        <h3 className="text-white text-xl font-bold mb-2">Submitting Your Feedback</h3>
+                        <p className="text-gray-300">Please wait while we save your response...</p>
+
+                        {/* Progress dots animation */}
+                        <div className="flex justify-center gap-1 mt-4">
+                            <motion.div
+                                animate={{ scale: [1, 1.5, 1] }}
+                                transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+                                className="w-2 h-2 bg-[#F361B0] rounded-full"
+                            />
+                            <motion.div
+                                animate={{ scale: [1, 1.5, 1] }}
+                                transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+                                className="w-2 h-2 bg-[#00FFFF] rounded-full"
+                            />
+                            <motion.div
+                                animate={{ scale: [1, 1.5, 1] }}
+                                transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+                                className="w-2 h-2 bg-[#FF9CDA] rounded-full"
+                            />
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+
             {/* Background Elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -200,7 +273,8 @@ const SuggestionPage = () => {
                                     onChange={handleChange}
                                     placeholder="Enter your name"
                                     required
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white"
+                                    disabled={isSubmitting}
+                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
@@ -214,7 +288,8 @@ const SuggestionPage = () => {
                                     onChange={handleChange}
                                     placeholder="Enter your Gmail"
                                     required
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white"
+                                    disabled={isSubmitting}
+                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
                         </div>
@@ -229,7 +304,8 @@ const SuggestionPage = () => {
                                 onChange={handleChange}
                                 placeholder="Where are you from?"
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white"
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </div>
 
@@ -242,18 +318,19 @@ const SuggestionPage = () => {
                                 {["Under 15", "15–25", "26–35", "36–50", "50+"].map((age) => (
                                     <motion.label
                                         key={age}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                                        whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                                         className={`px-4 py-3 rounded-xl border cursor-pointer transition-all duration-300 ${formData.ageGroup === age
                                             ? "bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] text-white border-transparent shadow-lg"
                                             : "bg-white/5 border-white/10 hover:border-[#F361B0]/50 text-gray-300"
-                                            }`}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
                                         <input
                                             type="radio"
                                             name="ageGroup"
                                             value={age}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             className="hidden"
                                         />
                                         <span className="text-white">{age}</span>
@@ -271,18 +348,19 @@ const SuggestionPage = () => {
                                 {["Home", "Office", "Study space", "Other"].map((loc) => (
                                     <motion.label
                                         key={loc}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                                        whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                                         className={`px-4 py-3 rounded-xl border cursor-pointer transition-all duration-300 ${formData.useLocation === loc
                                             ? "bg-gradient-to-r from-[#00FFFF] to-[#00BFFF] text-white border-transparent shadow-lg"
                                             : "bg-white/5 border-white/10 hover:border-[#00FFFF]/50 text-gray-300"
-                                            }`}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
                                         <input
                                             type="radio"
                                             name="useLocation"
                                             value={loc}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             className="hidden"
                                         />
                                         <span className="text-white">{loc}</span>
@@ -297,7 +375,8 @@ const SuggestionPage = () => {
                                     name="locationOther"
                                     placeholder="Please specify..."
                                     onChange={handleChange}
-                                    className="mt-4 w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white"
+                                    disabled={isSubmitting}
+                                    className="mt-4 w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             )}
                         </div>
@@ -324,13 +403,13 @@ const SuggestionPage = () => {
                                 {["😕", "😐", "🙂", "😃", "😍"].map((emoji, index) => (
                                     <motion.span
                                         key={index}
-                                        whileHover={{ scale: 1.2 }}
-                                        whileTap={{ scale: 0.9 }}
+                                        whileHover={!isSubmitting ? { scale: 1.2 } : {}}
+                                        whileTap={!isSubmitting ? { scale: 0.9 } : {}}
                                         className={`text-3xl cursor-pointer transition-all duration-300 ${formData.designAppeal - 1 === index
                                             ? "scale-125 filter drop-shadow-lg"
                                             : "scale-100 opacity-70"
-                                            }`}
-                                        onClick={() => setFormData(prev => ({ ...prev, designAppeal: index + 1 }))}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+                                        onClick={() => !isSubmitting && setFormData(prev => ({ ...prev, designAppeal: index + 1 }))}
                                     >
                                         {emoji}
                                     </motion.span>
@@ -346,7 +425,8 @@ const SuggestionPage = () => {
                                     max="5"
                                     value={formData.designAppeal}
                                     onChange={handleChange}
-                                    className={`w-full h-2 bg-gradient-to-r ${getSliderColor(formData.designAppeal)} rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg`}
+                                    disabled={isSubmitting}
+                                    className={`w-full h-2 bg-gradient-to-r ${getSliderColor(formData.designAppeal)} rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
                                 />
                                 <div className="flex justify-between text-xs text-gray-400 mt-2">
                                     <span>Not Really</span>
@@ -363,7 +443,8 @@ const SuggestionPage = () => {
                                 name="designStyle"
                                 rows={3}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#FF6B6B] focus:border-[#FF6B6B] placeholder-gray-500 transition-all duration-300 resize-none text-white"
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#FF6B6B] focus:border-[#FF6B6B] placeholder-gray-500 transition-all duration-300 resize-none text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 placeholder="Tell us about your dream design..."
                             />
                         </div>
@@ -388,17 +469,18 @@ const SuggestionPage = () => {
                             {featureOptions.map((feature) => (
                                 <motion.label
                                     key={feature}
-                                    whileHover={{ scale: 1.02 }}
+                                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                                     className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all duration-300 ${formData.valuableFeatures.includes(feature)
                                         ? "bg-gradient-to-r from-[#A78BFA] to-[#C084FC] border-transparent shadow-lg"
                                         : "bg-white/5 border-white/10 hover:border-[#A78BFA]/50"
-                                        }`}
+                                        } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                 >
                                     <input
                                         type="checkbox"
                                         value={feature}
                                         onChange={handleFeatureChange}
                                         checked={formData.valuableFeatures.includes(feature)}
+                                        disabled={isSubmitting}
                                         className="accent-white h-4 w-4 rounded"
                                     />
                                     <span className={`text-sm font-medium ${formData.valuableFeatures.includes(feature) ? "text-white" : "text-gray-300"}`}>
@@ -416,7 +498,8 @@ const SuggestionPage = () => {
                                 name="newFeatureRequest"
                                 rows={3}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#A78BFA] focus:border-[#A78BFA] placeholder-gray-500 transition-all duration-300 resize-none text-white"
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#A78BFA] focus:border-[#A78BFA] placeholder-gray-500 transition-all duration-300 resize-none text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 placeholder="Share your creative ideas..."
                             />
                         </div>
@@ -442,18 +525,19 @@ const SuggestionPage = () => {
                                 {["Under ₹2000", "₹2000–₹2999", "₹3000–₹3499", "₹3500+"].map((price) => (
                                     <motion.label
                                         key={price}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                                        whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                                         className={`p-3 text-sm text-center rounded-xl border cursor-pointer transition-all duration-300 ${formData.comfortPrice === price
                                             ? "bg-gradient-to-r from-[#4ADE80] to-[#22D3EE] border-transparent shadow-lg"
                                             : "bg-white/5 border-white/10 hover:border-[#4ADE80]/50"
-                                            }`}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
                                         <input
                                             type="radio"
                                             name="comfortPrice"
                                             value={price}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             className="hidden"
                                         />
                                         <span className={formData.comfortPrice === price ? "text-white font-semibold" : "text-gray-300"}>
@@ -476,12 +560,12 @@ const SuggestionPage = () => {
                                 {["Yes", "No", "Maybe"].map((opt) => (
                                     <motion.label
                                         key={opt}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                                        whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                                         className={`px-4 py-3 rounded-xl border cursor-pointer transition-all duration-300 ${formData.preOrder === opt
                                             ? "bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] border-transparent shadow-lg"
                                             : "bg-white/5 border-white/10 hover:border-[#F361B0]/50"
-                                            }`}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
                                         <input
                                             type="radio"
@@ -489,6 +573,7 @@ const SuggestionPage = () => {
                                             value={opt}
                                             checked={formData.preOrder === opt}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             className="hidden"
                                         />
                                         <span className={formData.preOrder === opt ? "text-white font-semibold" : "text-gray-300"}>
@@ -508,11 +593,11 @@ const SuggestionPage = () => {
                                 {priorityOptions.map((opt) => (
                                     <motion.label
                                         key={opt}
-                                        whileHover={{ scale: 1.02 }}
+                                        whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                                         className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-300 ${formData.prioritySlot === opt
                                             ? "bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] border-transparent shadow-lg"
                                             : "bg-white/5 border-white/10 hover:border-[#F361B0]/50"
-                                            }`}
+                                            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
                                         <input
                                             type="radio"
@@ -520,6 +605,7 @@ const SuggestionPage = () => {
                                             value={opt}
                                             checked={formData.prioritySlot === opt}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             className="accent-white h-4 w-4"
                                         />
                                         <span className={`font-medium ${formData.prioritySlot === opt ? "text-white" : "text-gray-300"}`}>
@@ -538,7 +624,8 @@ const SuggestionPage = () => {
                                 name="finalThoughts"
                                 rows={4}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#4ADE80] focus:border-[#4ADE80] placeholder-gray-500 transition-all duration-300 resize-none text-white"
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#4ADE80] focus:border-[#4ADE80] placeholder-gray-500 transition-all duration-300 resize-none text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                 placeholder="Share your final thoughts..."
                             />
                         </div>
@@ -552,22 +639,37 @@ const SuggestionPage = () => {
                         className="text-center pt-8"
                     >
                         <motion.button
-                            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(243, 97, 176, 0.3)" }}
-                            whileTap={{ scale: 0.95 }}
+                            whileHover={!isSubmitting ? { scale: 1.05, boxShadow: "0 20px 40px rgba(243, 97, 176, 0.3)" } : {}}
+                            whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                             type="submit"
-                            className="group relative px-12 py-4 text-lg font-bold bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden"
+                            disabled={isSubmitting}
+                            className={`group relative px-12 py-4 text-lg font-bold rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden ${isSubmitting
+                                ? "bg-gray-600 cursor-not-allowed"
+                                : "bg-gradient-to-r from-[#F361B0] to-[#FF9CDA]"
+                                }`}
                         >
-                            {/* Button Glow */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#F361B0] to-[#00FFFF] rounded-2xl blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-                            
+                            {/* Button Glow - Only when not loading */}
+                            {!isSubmitting && (
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#F361B0] to-[#00FFFF] rounded-2xl blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                            )}
+
                             {/* Button Content */}
                             <div className="relative z-10 flex items-center justify-center gap-3">
-                                <span className="text-white">Submit My Feedback</span>
+                                {isSubmitting ? (
+                                    // Loading spinner
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        <span className="text-white">Submitting...</span>
+                                    </div>
+                                ) : (
+                                    // Normal button text
+                                    <span className="text-white">Submit My Feedback</span>
+                                )}
                             </div>
                         </motion.button>
-                        
+
                         <p className="text-gray-400 text-sm mt-4">
-                            Your feedback helps us create something amazing together! 💖
+                            {isSubmitting ? "Saving your feedback..." : "Your feedback helps us create something amazing together! 💖"}
                         </p>
                     </motion.div>
                 </motion.form>

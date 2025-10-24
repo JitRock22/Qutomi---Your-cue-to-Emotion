@@ -7,6 +7,8 @@ import ResetPassword from "./pages/Resetpassword";
 import Home from './pages/Home';
 import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
+import SuccessPage from './pages/SuccessPage';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +40,9 @@ function App() {
           path="/signup"
           element={isLoggedIn ? <Navigate to="/home" /> : <Signup />}
         />
-           <Route path="/suggestions" element={<SuggestionPage />} />
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/error" element={<ErrorPage />} />
+        <Route path="/suggestions" element={<SuggestionPage />} />
       </Routes>
     </Router>
   );
