@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
-import ErrorPage from './pages/ErrorPage';
+import ErrorPage from './pages/Errorpage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
