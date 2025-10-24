@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { FaCheckCircle, FaHeart, FaArrowLeft, FaRedo } from "react-icons/fa";
 
 const SuccessPage = () => {
+    const location = useLocation();
+
+    // If user opens /success directly, redirect them
+    if (!location.state?.submitted) {
+        return <Navigate to="/" />;
+    }
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#080808] via-[#0f0f0f] to-[#1a1a1a] flex items-center justify-center p-4">
             {/* Background Elements */}

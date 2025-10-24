@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { FaExclamationTriangle, FaArrowLeft, FaRedo } from "react-icons/fa";
 
 const ErrorPage = () => {
+    const location = useLocation();
+
+    // If user opens /error directly, block it
+    if (!location.state?.fromForm) {
+        return <Navigate to="/" />;
+    }
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#080808] via-[#0f0f0f] to-[#1a1a1a] flex items-center justify-center p-4 sm:p-6">
             {/* Background Elements */}
@@ -29,9 +36,9 @@ const ErrorPage = () => {
                 <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
-                    transition={{ 
-                        delay: 0.2, 
-                        type: "spring", 
+                    transition={{
+                        delay: 0.2,
+                        type: "spring",
                         stiffness: 200,
                         duration: 0.8
                     }}
@@ -49,7 +56,7 @@ const ErrorPage = () => {
                 >
                     Oops!
                 </motion.h1>
-                
+
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -58,7 +65,7 @@ const ErrorPage = () => {
                 >
                     Something went wrong while submitting your feedback.
                 </motion.p>
-                
+
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -79,8 +86,8 @@ const ErrorPage = () => {
                     className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch w-full"
                 >
                     {/* Back to Home Button - Outline Style */}
-                    <motion.div 
-                        whileHover={{ scale: 1.02, y: -1 }} 
+                    <motion.div
+                        whileHover={{ scale: 1.02, y: -1 }}
                         whileTap={{ scale: 0.98 }}
                         className="flex-1 min-w-0"
                     >
@@ -94,8 +101,8 @@ const ErrorPage = () => {
                     </motion.div>
 
                     {/* Try Again Button - Gradient Style */}
-                    <motion.div 
-                        whileHover={{ scale: 1.02, y: -1 }} 
+                    <motion.div
+                        whileHover={{ scale: 1.02, y: -1 }}
                         whileTap={{ scale: 0.98 }}
                         className="flex-1 min-w-0"
                     >
@@ -105,10 +112,10 @@ const ErrorPage = () => {
                         >
                             {/* Button Background Gradient */}
                             <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B6B] to-[#FFA726] rounded-xl"></div>
-                            
+
                             {/* Hover Glow Effect */}
                             <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B6B] to-[#FFD93D] rounded-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-xs"></div>
-                            
+
                             {/* Button Content */}
                             <div className="relative z-10 flex items-center gap-2">
                                 <FaRedo className="text-xs flex-shrink-0 transition-transform duration-300 group-hover:rotate-180" />
