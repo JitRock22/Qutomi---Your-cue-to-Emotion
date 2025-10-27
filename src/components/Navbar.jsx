@@ -186,6 +186,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { account } from "../config/appwriteConfig";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaUser, FaSignOutAlt, FaEnvelope, FaCheck, FaHome, FaLightbulb } from "react-icons/fa";
+import { Md3dRotation } from "react-icons/md";
 
 const Navbar = ({ setIsLoggedIn }) => {
   const [user, setUser] = useState(null);
@@ -271,6 +272,7 @@ const Navbar = ({ setIsLoggedIn }) => {
     // { name: "About", path: "#about", icon: <FaUser className="text-sm" /> },
     // { name: "Features", path: "#features", icon: <FaLightbulb className="text-sm" /> },
     // { name: "Goals", path: "#goals", icon: <FaCheck className="text-sm" /> },
+    {name:"3D Experience",path:"/experience",icon:<Md3dRotation className="text-md"/>},
     { name: "Suggestions", path: "#suggestion", icon: <FaLightbulb className="text-sm" /> },
   ];
 

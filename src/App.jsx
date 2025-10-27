@@ -9,6 +9,7 @@ import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/Errorpage';
+import Experience3D from './pages/experience';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,6 +43,10 @@ function App() {
         />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/error" element={<ErrorPage />} />
+        <Route
+          path="/experience"
+          element={<Experience3D />}
+        />
         <Route path="/suggestions" element={<SuggestionPage />} />
       </Routes>
     </Router>
