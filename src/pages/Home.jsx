@@ -82,7 +82,7 @@
 //         <div id="banner-container" className="rounded-3xl overflow-hidden w-full sm:h-[70vh] md:h-[80vh] lg:h-[85vh] max-w-[95vw] mx-auto">
 //           <Banner />
 //         </div>
-        
+
 //         {/* Fixed Scroll Arrow - Only shows when at top */}
 //         {showScrollArrow && (
 //           <motion.div
@@ -111,7 +111,7 @@
 
 
 
-// import { account } from '../config/appwriteConfig';
+import { account } from '../config/appwriteConfig';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState, useCallback, Suspense, lazy } from 'react';
@@ -164,7 +164,7 @@ const SectionErrorBoundary = ({ children, sectionName }) => {
         <div className="text-center text-white">
           <div className="text-2xl mb-2">⚠️</div>
           <p className="text-sm text-gray-300">Failed to load {sectionName}</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="mt-3 px-4 py-2 bg-[#E60076] text-white rounded-lg text-sm hover:bg-[#F361B0] transition-colors"
           >
@@ -180,7 +180,7 @@ const SectionErrorBoundary = ({ children, sectionName }) => {
 
 // Improved Loading component that maintains full width
 const SectionLoader = ({ minHeight = '400px' }) => (
-  <div 
+  <div
     className="w-full flex items-center justify-center bg-transparent"
     style={{ minHeight }}
   >
@@ -202,18 +202,18 @@ const sectionHeights = {
 };
 
 // Main LazySection component with full width handling
-const LazySection = ({ 
-  sectionId, 
-  isVisible, 
-  component: Component, 
+const LazySection = ({
+  sectionId,
+  isVisible,
+  component: Component,
   sectionName,
-  ...props 
+  ...props
 }) => {
   const sectionHeight = sectionHeights[sectionId] || '400px';
 
   return (
-    <div 
-      id={sectionId} 
+    <div
+      id={sectionId}
       className="w-full"
       style={{ minHeight: isVisible ? 'auto' : sectionHeight }}
     >
@@ -346,7 +346,7 @@ const Home = ({ setIsLoggedIn }) => {
   const handleScrollDown = useCallback(() => {
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
-      aboutSection.scrollIntoView({ 
+      aboutSection.scrollIntoView({
         behavior: "smooth"
       });
     }
@@ -381,13 +381,13 @@ const Home = ({ setIsLoggedIn }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 w-full pt-20 sm:mt-10 sm:pt-10"
       >
-        <div 
-          id="banner-container" 
-          className="w-full sm:h-[70vh] md:h-[80vh] lg:h-[85vh]"
+        <div
+          id="banner-container"
+          className="w-full sm:h-[70vh] md:h-[80vh] lg:h-[85vh] px-4 sm:px-6 lg:px-8"
         >
           <Banner />
         </div>
-        
+
         {/* Fixed Scroll Arrow - Only shows when at top */}
         {showScrollArrow && (
           <motion.div
@@ -396,7 +396,7 @@ const Home = ({ setIsLoggedIn }) => {
             animate={{ y: ["0%", "20%", "0%"] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="bg-black/30 backdrop-blur-sm rounded-full p-2 group-hover:bg-black/50 transition-all">
+            <div className="bg-trasn rounded-full p-2 group-hover:bg-black/50 transition-all">
               <FaChevronDown className="text-white/70 group-hover:text-white text-xl transition-colors" />
             </div>
           </motion.div>
@@ -452,3 +452,6 @@ const Home = ({ setIsLoggedIn }) => {
 };
 
 export default Home;
+
+
+

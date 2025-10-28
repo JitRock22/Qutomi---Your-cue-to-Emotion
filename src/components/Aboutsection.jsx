@@ -55,7 +55,7 @@
 //           >
 //             {/* Background Glow */}
 //             <div className="absolute -z-10 w-80 h-80 bg-gradient-to-r from-[#F361B0]/10 to-[#00FFFF]/10 rounded-full blur-2xl animate-pulse" />
-            
+
 //             <div className="relative group">
 //               <motion.img
 //                 src={AboutImg}
@@ -175,7 +175,7 @@
 
 
 import { motion } from "framer-motion";
-import AboutImg from '../assets/About_img.png';
+// import AboutImg from '../assets/About_img.png';
 import { FaHeart, FaStar } from 'react-icons/fa';
 
 const AboutSection = () => {
@@ -258,10 +258,17 @@ const AboutSection = () => {
           >
             {/* Background Glow */}
             <div className="absolute -z-10 w-80 h-80 bg-gradient-to-r from-[#F361B0]/10 to-[#00FFFF]/10 rounded-full blur-2xl animate-pulse" />
-            
+
             <div className="relative group">
-              <motion.img
+              {/* <motion.img
                 src={AboutImg}
+                alt="About Qutomi"
+                className="w-full max-w-md object-contain drop-shadow-2xl relative z-10 rounded-2xl"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              /> */}
+              <motion.img
+                src="https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/About_img_oqeqou.png"
                 alt="About Qutomi"
                 className="w-full max-w-md object-contain drop-shadow-2xl relative z-10 rounded-2xl"
                 whileHover={{ scale: 1.03 }}
@@ -303,7 +310,7 @@ const AboutSection = () => {
               >
                 Unveiling
                 <span className="inline-block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-                &nbsp; QUTOMI
+                  &nbsp; QUTOMI
                 </span>
               </motion.h2>
             </div>

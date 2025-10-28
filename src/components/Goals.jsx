@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaRobot, FaSmile, FaHandsHelping, FaHeart, FaStar, FaUsers, FaLightbulb } from "react-icons/fa";
-import goalsImg from "../assets/Feature_img2.png";
+// import goalsImg from "../assets/Feature_img2.png";
 
 const goals = [
   {
@@ -27,7 +27,7 @@ const goals = [
     text: "5% of every Qutomi sold goes to orphan children's education and wellbeing. Together, we can make technology that truly matters.",
     gradient: "from-purple-500 to-indigo-600",
   },
-  
+
 ];
 
 const Goals = () => {
@@ -82,14 +82,14 @@ const Goals = () => {
             <FaStar className="text-[#F361B0] text-xs" />
             <span className="text-white/80 text-xs font-medium">Our Mission</span>
           </motion.div>
-          
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             Beyond Technology,
             <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
               Towards Humanity
             </span>
           </h2>
-          
+
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Qutomi isn't just a smart companion. It's a step toward emotional
             technology that spreads care, creativity, and kindness — one smile at a time.
@@ -108,8 +108,15 @@ const Goals = () => {
           >
             <div className="absolute -z-10 w-80 h-80 bg-gradient-to-r from-[#F361B0]/10 to-[#00FFFF]/10 rounded-full blur-2xl animate-pulse" />
             <div className="relative group">
-              <motion.img
+              {/* <motion.img
                 src={goalsImg}
+                alt="Qutomi Goals Illustration"
+                className="w-full max-w-sm lg:max-w-md object-contain rounded-xl drop-shadow-2xl relative z-10"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              /> */}
+              <motion.img
+                src="https://res.cloudinary.com/doyahf4an/image/upload/v1761634682/Gemini_Generated_Image_lbvhi4lbvhi4lbvh_tzn0qa.png"
                 alt="Qutomi Goals Illustration"
                 className="w-full max-w-sm lg:max-w-md object-contain rounded-xl drop-shadow-2xl relative z-10"
                 whileHover={{ scale: 1.03 }}
@@ -140,7 +147,7 @@ const Goals = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl border border-white/10 backdrop-blur-sm group-hover:border-white/20 transition-all duration-300" />
                   <div className={`absolute inset-0 bg-gradient-to-br ${goal.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`} />
-                  
+
                   <div className="relative p-5 h-full flex flex-col z-10">
                     <motion.div
                       className={`flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br ${goal.gradient} flex items-center justify-center text-white text-lg shadow-lg mb-3`}

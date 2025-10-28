@@ -1,13 +1,32 @@
+
 // import { motion } from "framer-motion";
-// import { useState } from "react";
-// import Banner_img from "../assets/Banner_img1.png";
+// import { useState, useEffect } from "react";
+// import Banner_img_desktop from "../assets/Banner_img1.png";
+// import Banner_img_mobile from "../assets/Banner_mobile.jpeg";
 
 // const Banner = () => {
 //   const [isLoaded, setIsLoaded] = useState(false);
 //   const [isError, setIsError] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+
+//   // Detect screen size
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth < 640); // Tailwind's 'sm' breakpoint ~640px
+//     };
+//     handleResize(); // initial check
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const selectedImage = isMobile ? Banner_img_mobile : Banner_img_desktop;
 
 //   return (
-//     <div className="relative w-full h-full sm:h-80 md:h-[400px] overflow-hidden rounded-2xl shadow-lg">
+//    <div
+//   className={`relative w-full overflow-hidden rounded-2xl shadow-lg ${
+//     isMobile ? "" : "h-[70vh] sm:h-[75vh] md:h-[80vh]"
+//   }`}
+// >
 //       {/* Skeleton placeholder */}
 //       {!isLoaded && !isError && (
 //         <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />
@@ -16,7 +35,7 @@
 //       {/* Banner image */}
 //       {!isError && (
 //         <motion.img
-//           src={Banner_img}
+//           src={selectedImage}
 //           alt="Banner"
 //           className={`w-full h-full object-cover ${
 //             isLoaded ? "opacity-100" : "opacity-0"
@@ -46,7 +65,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Banner_img_desktop from "../assets/Banner_img1.png";
-import Banner_img_mobile from "../assets/Banner_mobile.jpeg";
 
 const Banner = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -63,14 +81,17 @@ const Banner = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Cloudinary URL for mobile only with optimizations
+  const Banner_img_mobile = "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_800/Banner_mobile_p3h6by.jpg";
+
   const selectedImage = isMobile ? Banner_img_mobile : Banner_img_desktop;
 
   return (
-   <div
-  className={`relative w-full overflow-hidden rounded-2xl shadow-lg ${
-    isMobile ? "" : "h-[70vh] sm:h-[75vh] md:h-[80vh]"
-  }`}
->
+    <div
+      className={`relative w-full overflow-hidden rounded-2xl shadow-lg ${
+        isMobile ? "" : "h-[70vh] sm:h-[75vh] md:h-[80vh]"
+      }`}
+    >
       {/* Skeleton placeholder */}
       {!isLoaded && !isError && (
         <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />

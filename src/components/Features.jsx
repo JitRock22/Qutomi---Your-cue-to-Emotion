@@ -1,13 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import img1 from '../assets/Feature_img1.png';
-import img2 from '../assets/Feature_img2.png';
-import img3 from '../assets/Feature_img3.png';
-import img4 from '../assets/Feature_img4.png';
-import img5 from '../assets/Feature_img5.png';
+// import img1 from '../assets/Feature_img1.png';
+// import img2 from '../assets/Feature_img2.png';
+// import img3 from '../assets/Feature_img3.png';
+// import img4 from '../assets/Feature_img4.png';
+// import img5 from '../assets/Feature_img5.png';
 import { FaMagic, FaGamepad, FaTasks, FaPalette, FaSmileBeam, FaHeart, FaPaintBrush, FaMusic, FaStar } from 'react-icons/fa';
 
-const images = [img1, img2, img3, img4, img5];
+// const images = [img1, img2, img3, img4, img5];
+const images = [
+  "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/Feature_img1_uhlnsj.png",
+  "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/Feature_img3_yblf1k.png", 
+  "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/Feature_img5_ivh4ne.png",
+  "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/Feature_img4_kjlcew.png",
+  "https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/Feature_img2_fobmty.png"
+];
 
 const features = [
   { icon: <FaMagic />, title: "20+ Animations", gradient: "from-purple-500 to-pink-500" },
