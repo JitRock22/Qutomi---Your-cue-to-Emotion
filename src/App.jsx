@@ -9,7 +9,7 @@ import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/Errorpage';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import Experience3D from './pages/experience';
 import Jackpot from './pages/jackpot';
 
