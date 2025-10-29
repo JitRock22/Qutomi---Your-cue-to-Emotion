@@ -10,6 +10,7 @@ import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/Errorpage';
 import Experience3D from './pages/experience';
+import Jackpot from './pages/jackpot';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,10 +44,11 @@ function App() {
         />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/error" element={<ErrorPage />} />
-        <Route
+        {/* <Route
           path="/experience"
           element={<Experience3D />}
-        />
+        /> */}
+        {/* <Route path="/jackpot" element={<Jackpot />} /> */}
         <Route path="/suggestions" element={<SuggestionPage />} />
       </Routes>
     </Router>

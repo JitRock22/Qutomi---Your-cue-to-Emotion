@@ -59,7 +59,7 @@
 //             <div className="relative group">
 //               <motion.img
 //                 src={AboutImg}
-//                 alt="About Qutomi"
+//                 alt="About Qtomi"
 //                 className="w-full max-w-md object-contain drop-shadow-2xl relative z-10 rounded-2xl"
 //                 whileHover={{ scale: 1.03 }}
 //                 transition={{ duration: 0.3 }}
@@ -100,7 +100,7 @@
 //             >
 //               Unveiling
 //               <span className="inline-block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-//               &nbsp; QUTOMI
+//               &nbsp; Qtomi
 //               </span>
 //             </motion.h2>
 
@@ -120,7 +120,7 @@
 //                 }}
 //                 transition={{ duration: 0.5 }}
 //               >
-//                 Qutomi is your intelligent companion — blending technology and emotion to create a unique bond. It's not just a device; it's a friend that understands, reacts, and grows with you.
+//                 Qtomi is your intelligent companion — blending technology and emotion to create a unique bond. It's not just a device; it's a friend that understands, reacts, and grows with you.
 //               </motion.p>
 
 //               <motion.p
@@ -131,7 +131,7 @@
 //                 }}
 //                 transition={{ duration: 0.5, delay: 0.1 }}
 //               >
-//                 Designed to bring joy, inspiration, and comfort, Qutomi's playful interactions and expressive responses make everyday moments extraordinary. Welcome to a world where technology feels alive.
+//                 Designed to bring joy, inspiration, and comfort, Qtomi's playful interactions and expressive responses make everyday moments extraordinary. Welcome to a world where technology feels alive.
 //               </motion.p>
 //             </motion.div>
 
@@ -235,7 +235,7 @@ const AboutSection = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             Unveiling
             <span className="inline-block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-              &nbsp;QUTOMI
+              &nbsp; QTOMI
             </span>
           </h2>
         </motion.div>
@@ -262,14 +262,14 @@ const AboutSection = () => {
             <div className="relative group">
               {/* <motion.img
                 src={AboutImg}
-                alt="About Qutomi"
+                alt="About Qtomi"
                 className="w-full max-w-md object-contain drop-shadow-2xl relative z-10 rounded-2xl"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
               /> */}
               <motion.img
                 src="https://res.cloudinary.com/doyahf4an/image/upload/f_auto,q_auto,w_600/About_img_oqeqou.png"
-                alt="About Qutomi"
+                alt="About Qtomi"
                 className="w-full max-w-md object-contain drop-shadow-2xl relative z-10 rounded-2xl"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
@@ -310,7 +310,7 @@ const AboutSection = () => {
               >
                 Unveiling
                 <span className="inline-block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-                  &nbsp; QUTOMI
+                  &nbsp; QTOMI
                 </span>
               </motion.h2>
             </div>
@@ -331,7 +331,7 @@ const AboutSection = () => {
                 }}
                 transition={{ duration: 0.5 }}
               >
-                Qutomi is your intelligent companion — blending technology and emotion to create a unique bond. It's not just a device; it's a friend that understands, reacts, and grows with you.
+                Qtomi is your intelligent companion — blending technology and emotion to create a unique bond. It's not just a device; it's a friend that understands, reacts, and grows with you.
               </motion.p>
 
               <motion.p
@@ -342,7 +342,7 @@ const AboutSection = () => {
                 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Designed to bring joy, inspiration, and comfort, Qutomi's playful interactions and expressive responses make everyday moments extraordinary. Welcome to a world where technology feels alive.
+                Designed to bring joy, inspiration, and comfort, Qtomi's playful interactions and expressive responses make everyday moments extraordinary. Welcome to a world where technology feels alive.
               </motion.p>
             </motion.div>
 

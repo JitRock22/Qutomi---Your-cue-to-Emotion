@@ -457,7 +457,7 @@ function CustomLoader() {
           className="mb-8"
         >
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-            Qutomi
+            Qtomi
           </h1>
           <div className="h-px w-16 bg-gradient-to-r from-[#F361B0] to-[#00FFFF] mx-auto mb-4"></div>
           <p className="text-gray-400 text-sm font-light">
@@ -678,7 +678,7 @@ const Experience3D = () => {
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight">
             Explore Our
             <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent mt-1 sm:mt-2">
-              Qutomi Virtually
+              Qtomi Virtually
             </span>
           </h1>
 

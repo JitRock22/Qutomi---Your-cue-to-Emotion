@@ -372,7 +372,7 @@ const Landing = () => {
         >
           Welcome to{" "}
           <span className="bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-            Qutomi
+            Qtomi
           </span>
         </motion.h1>
 

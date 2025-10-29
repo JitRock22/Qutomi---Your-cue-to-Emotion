@@ -12,7 +12,7 @@ const goals = [
   {
     icon: <FaSmile />,
     title: "Empower Every Home With Joy",
-    text: "Qutomi is designed to make every moment more playful, calm, and human — for kids, adults, and families alike.",
+    text: "Qtomi is designed to make every moment more playful, calm, and human — for kids, adults, and families alike.",
     gradient: "from-cyan-400 to-blue-500",
   },
   {
@@ -24,7 +24,7 @@ const goals = [
   {
     icon: <FaHandsHelping />,
     title: "Give Back With Every Unit Sold",
-    text: "5% of every Qutomi sold goes to orphan children's education and wellbeing. Together, we can make technology that truly matters.",
+    text: "5% of every Qtomi sold goes to orphan children's education and wellbeing. Together, we can make technology that truly matters.",
     gradient: "from-purple-500 to-indigo-600",
   },
 
@@ -91,7 +91,7 @@ const Goals = () => {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Qutomi isn't just a smart companion. It's a step toward emotional
+            Qtomi isn't just a smart companion. It's a step toward emotional
             technology that spreads care, creativity, and kindness — one smile at a time.
           </p>
         </motion.div>
@@ -110,14 +110,14 @@ const Goals = () => {
             <div className="relative group">
               {/* <motion.img
                 src={goalsImg}
-                alt="Qutomi Goals Illustration"
+                alt="Qtomi Goals Illustration"
                 className="w-full max-w-sm lg:max-w-md object-contain rounded-xl drop-shadow-2xl relative z-10"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
               /> */}
               <motion.img
                 src="https://res.cloudinary.com/doyahf4an/image/upload/v1761634682/Gemini_Generated_Image_lbvhi4lbvhi4lbvh_tzn0qa.png"
-                alt="Qutomi Goals Illustration"
+                alt="Qtomi Goals Illustration"
                 className="w-full max-w-sm lg:max-w-md object-contain rounded-xl drop-shadow-2xl relative z-10"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
@@ -179,7 +179,7 @@ const Goals = () => {
               <div className="inline-flex items-center gap-3 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#F361B0]/10 to-[#00FFFF]/10 border border-white/10 backdrop-blur-sm hover:border-white/20 transition-all duration-300">
                 <FaHeart className="text-[#F361B0] text-xl flex-shrink-0" />
                 <span className="text-white font-semibold text-base">
-                  When you bring home a Qutomi, you bring happiness to another home too.
+                  When you bring home a Qtomi, you bring happiness to another home too.
                 </span>
               </div>
             </motion.div>

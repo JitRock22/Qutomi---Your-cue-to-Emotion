@@ -64,7 +64,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import Banner_img_desktop from "../assets/Banner_img1.png";
+import Banner_img_desktop from "../assets/Banner_img1.webp";
 
 const Banner = () => {
   const [isLoaded, setIsLoaded] = useState(false);

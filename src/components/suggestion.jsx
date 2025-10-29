@@ -16,11 +16,11 @@
 //         >
 //           {/* CHANGED: New Heading */}
 //           <h2 className="text-3xl sm:text-4xl font-extrabold text-text-color">
-//             Be the First to Experience Qutomi
+//             Be the First to Experience Qtomi
 //           </h2>
 //           {/* CHANGED: New Paragraph */}
 //           <p className="mt-4 text-lg text-gray-300">
-//             Your ideas are our secret ingredient. Before we launch, we invite you to share your valuable suggestions to help us craft the perfect experience and become a founding voice of the Qutomi community.
+//             Your ideas are our secret ingredient. Before we launch, we invite you to share your valuable suggestions to help us craft the perfect experience and become a founding voice of the Qtomi community.
 //           </p>
 //         </motion.div>
 
@@ -107,13 +107,13 @@ const SuggestionCTA = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             Be the First to
             <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-              Experience Qutomi
+              Experience Qtomi
             </span>
           </h2>
 
           {/* Description */}
           <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto leading-relaxed mb-8">
-            Your ideas are our secret ingredient. Before we launch, we invite you to share your valuable suggestions to help us craft the perfect experience and become a founding voice of the Qutomi community.
+            Your ideas are our secret ingredient. Before we launch, we invite you to share your valuable suggestions to help us craft the perfect experience and become a founding voice of the Qtomi community.
           </p>
 
           {/* Stats */}

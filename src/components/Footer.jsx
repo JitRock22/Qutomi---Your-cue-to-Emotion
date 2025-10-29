@@ -31,7 +31,7 @@ const Footer = () => {
                   <span className="text-white font-bold text-lg">Q</span>
                 </div>
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Qutomi
+                  Qtomi
                 </h3>
               </div>
 
@@ -144,7 +144,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                &copy; 2025 Qutomi.com All rights reserved.
+                &copy; 2025 Qtomi.com All rights reserved.
               </motion.p>
 
               {/* Made with love - Separate line on mobile */}

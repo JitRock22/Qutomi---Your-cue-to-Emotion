@@ -235,11 +235,11 @@
 //                     <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
 //                         Let's Build
 //                         <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-//                             Qutomi Together
+//                             Qtomi Together
 //                         </span>
 //                     </h1>
 //                     <p className="text-lg text-gray-300 max-w-xl mx-auto leading-relaxed">
-//                         Help us shape the future of Qutomi — your feedback will make our companion smarter, cuter, and truly yours.
+//                         Help us shape the future of Qtomi — your feedback will make our companion smarter, cuter, and truly yours.
 //                     </p>
 //                 </motion.div>
 
@@ -342,7 +342,7 @@
 //                         {/* Location */}
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-3 block">
-//                                 Where would you most likely use Qutomi?
+//                                 Where would you most likely use Qtomi?
 //                             </label>
 //                             <div className="flex flex-wrap gap-3">
 //                                 {["Home", "Office", "Study space", "Other"].map((loc) => (
@@ -395,7 +395,7 @@
 
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-4 block text-center">
-//                                 How appealing is Qutomi's concept?
+//                                 How appealing is Qtomi's concept?
 //                             </label>
 
 //                             {/* Emoji Rating */}
@@ -519,7 +519,7 @@
 //                         {/* Comfort Price */}
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-3 block">
-//                                 How much would you be comfortable paying for Qutomi?
+//                                 How much would you be comfortable paying for Qtomi?
 //                             </label>
 //                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
 //                                 {["Under ₹2000", "₹2000–₹2999", "₹3000–₹3499", "₹3500+"].map((price) => (
@@ -551,10 +551,10 @@
 //                         {/* Pre-order willingness */}
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-3 block">
-//                                 Are you happy to pay a pre-order price for Qutomi?
+//                                 Are you happy to pay a pre-order price for Qtomi?
 //                             </label>
 //                             <p className="text-gray-400 text-sm mb-4">
-//                                 Your pre-order helps us improve Qutomi faster and make it even better for you!
+//                                 Your pre-order helps us improve Qtomi faster and make it even better for you!
 //                             </p>
 //                             <div className="flex flex-wrap gap-3">
 //                                 {["Yes", "No", "Maybe"].map((opt) => (
@@ -587,7 +587,7 @@
 //                         {/* Priority Slot */}
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-3 block">
-//                                 Would you like to book a <span className="text-[#F361B0] font-semibold">priority slot</span> for Qutomi before launch?
+//                                 Would you like to book a <span className="text-[#F361B0] font-semibold">priority slot</span> for Qtomi before launch?
 //                             </label>
 //                             <div className="space-y-3">
 //                                 {priorityOptions.map((opt) => (
@@ -618,7 +618,7 @@
 
 //                         <div>
 //                             <label className="text-gray-300 font-medium mb-3 block">
-//                                 Any last thoughts or ideas to make Qutomi special?
+//                                 Any last thoughts or ideas to make Qtomi special?
 //                             </label>
 //                             <textarea
 //                                 name="finalThoughts"
@@ -802,7 +802,7 @@ const Step1 = memo(({ formData, handleChange, isSubmitting, MotionComponent, pre
       </div>
 
       <div>
-        <label className="text-gray-300 text-sm font-medium mb-3 block">Where would you use Qutomi?</label>
+        <label className="text-gray-300 text-sm font-medium mb-3 block">Where would you use Qtomi?</label>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {["Home", "Office", "Study", "Other"].map((loc) => (
             <MotionComponent
@@ -840,7 +840,7 @@ const Step1 = memo(({ formData, handleChange, isSubmitting, MotionComponent, pre
               name="locationOther"
               value={formData.locationOther}
               onChange={handleChange}
-              placeholder="Please specify where you'd use Qutomi..."
+              placeholder="Please specify where you'd use Qtomi..."
               disabled={isSubmitting}
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#F361B0] focus:border-[#F361B0] placeholder-gray-500 transition-all duration-300 text-white disabled:opacity-50 text-sm backdrop-blur-sm"
             />
@@ -879,7 +879,7 @@ const Step2 = memo(({ formData, handleChange, setFormData, isSubmitting, MotionC
 
       <div className="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
         <label className="text-gray-300 text-sm font-medium mb-4 block text-center">
-          How appealing is Qutomi's concept?
+          How appealing is Qtomi's concept?
         </label>
 
         <div className="flex justify-center gap-3 mb-4">
@@ -1061,7 +1061,7 @@ const Step4 = memo(({ formData, handleChange, isSubmitting, MotionComponent, pre
 
       <div className="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
         <label className="text-gray-300 text-sm font-medium mb-3 block">Pre-order Interest</label>
-        <p className="text-gray-400 text-xs mb-3">Your pre-order helps us improve Qutomi faster!</p>
+        <p className="text-gray-400 text-xs mb-3">Your pre-order helps us improve Qtomi faster!</p>
         <div className="grid grid-cols-3 gap-2">
           {["Yes", "No", "Maybe"].map((opt) => (
             <MotionComponent
@@ -1131,7 +1131,7 @@ const Step4 = memo(({ formData, handleChange, isSubmitting, MotionComponent, pre
           onChange={handleChange}
           disabled={isSubmitting}
           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-[#4ADE80] focus:border-[#4ADE80] placeholder-gray-500 transition-all duration-300 resize-none text-white disabled:opacity-50 text-sm backdrop-blur-sm"
-          placeholder="Any last ideas to make Qutomi truly special for you?"
+          placeholder="Any last ideas to make Qtomi truly special for you?"
         />
       </div>
     </MotionComponent>
@@ -1685,7 +1685,7 @@ const SuggestionPage = () => {
                     <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                         Let's Build
                         <span className="block bg-gradient-to-r from-[#F361B0] to-[#00FFFF] bg-clip-text text-transparent">
-                            Qutomi Together
+                            Qtomi Together
                         </span>
                     </h1>
                     <p className="text-sm text-gray-300 max-w-md mx-auto">
