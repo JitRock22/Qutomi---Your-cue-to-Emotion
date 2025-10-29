@@ -9,6 +9,7 @@ import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/Errorpage';
+import { Analytics } from "@vercel/analytics/next"
 import Experience3D from './pages/experience';
 import Jackpot from './pages/jackpot';
 
@@ -51,6 +52,7 @@ function App() {
         {/* <Route path="/jackpot" element={<Jackpot />} /> */}
         <Route path="/suggestions" element={<SuggestionPage />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
