@@ -217,7 +217,18 @@ const Navbar = ({ setIsLoggedIn }) => {
               boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
             }}
           >
-            {user?.name ? user.name[0].toUpperCase() : "U"}
+            {/* {user?.name ? user.name[0].toUpperCase() : "U"} */}
+            {user?.prefs?.avatar ? (
+              <img
+                src={user.prefs.avatar}
+                alt={user.name}
+                className="h-12 w-12 rounded-xl object-cover"
+              />
+            ) : (
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-[#F361B0] to-[#FF9CDA] flex items-center justify-center text-white font-semibold">
+                {user?.name ? user.name[0].toUpperCase() : "U"}
+              </div>
+            )}
 
             {/* Online Indicator */}
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-[#080808] rounded-full" />
@@ -250,8 +261,8 @@ const Navbar = ({ setIsLoggedIn }) => {
                   {/* Verification Badge */}
                   <div
                     className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold border ${user?.emailVerification
-                        ? "text-green-400 border-green-400/50 bg-green-400/10"
-                        : "text-yellow-400 border-yellow-400/50 bg-yellow-400/10"
+                      ? "text-green-400 border-green-400/50 bg-green-400/10"
+                      : "text-yellow-400 border-yellow-400/50 bg-yellow-400/10"
                       }`}
                   >
                     {user?.emailVerification ? <FaCheck className="text-xs" /> : <FaEnvelope className="text-xs" />}
@@ -306,9 +317,9 @@ const Navbar = ({ setIsLoggedIn }) => {
                   onClick={handleLogout}
                   className="w-full py-3 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2"
                   style={{
-  background: "linear-gradient(135deg, #F361B0, #E60076)",
-  boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
-}}
+                    background: "linear-gradient(135deg, #F361B0, #E60076)",
+                    boxShadow: "0 0 20px rgba(243, 97, 176, 0.3)",
+                  }}
                 >
                   <FaSignOutAlt />
                   Logout

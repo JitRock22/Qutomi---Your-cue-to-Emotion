@@ -252,6 +252,28 @@ const Home = ({ setIsLoggedIn }) => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       const user = await account.get();
+  //       console.log("🏠 Home: User session:", user);
+
+  //       if (!user) {
+  //         console.log("❌ Home: No user session, redirecting to login");
+  //         navigate("/login");
+  //       } else {
+  //         console.log("✅ Home: User authenticated:", user.name);
+  //       }
+  //     } catch (error) {
+  //       console.error("❌ Home: Auth check failed:", error);
+  //       navigate("/login");
+  //     }
+  //   };
+
+  //   checkAuth();
+  // }, [navigate]);
+
+
   // Prefetch lazy components on mount and user interaction
   useEffect(() => {
     const handlePrefetch = () => {

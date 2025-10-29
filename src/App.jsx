@@ -9,9 +9,9 @@ import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ErrorPage from './pages/Errorpage';
-import { Analytics } from "@vercel/analytics/react"
-import Experience3D from './pages/experience';
-import Jackpot from './pages/jackpot';
+// import { Analytics } from "@vercel/analytics/react"
+// import Experience3D from './pages/experience';
+// import Jackpot from './pages/jackpot';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,8 +51,9 @@ function App() {
         /> */}
         {/* <Route path="/jackpot" element={<Jackpot />} /> */}
         <Route path="/suggestions" element={<SuggestionPage />} />
+        {/* <Route path="/oauth-callback" element={<OAuthcallback />} /> */}
       </Routes>
-      <Analytics />
+      {/* <Analytics /> */}
     </Router>
   );
 }
