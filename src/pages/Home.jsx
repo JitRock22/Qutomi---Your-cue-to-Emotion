@@ -938,7 +938,7 @@ import { account } from '../config/appwriteConfig';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState, useCallback, Suspense, lazy } from 'react';
-import HomeSkeleton from '../components/Homeskeleton'; // This is imported
+import HomeSkeleton from '../components/Homeskeleton';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import { FaChevronDown } from 'react-icons/fa';
@@ -951,105 +951,25 @@ const Goals = lazy(() => import('../components/Goals'));
 const FAQ = lazy(() => import('../components/FAQSection'));
 const Footer = lazy(() => import('../components/Footer'));
 
-// Error Boundary Component
-const SectionErrorBoundary = ({ children, sectionName }) => {
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    const errorHandler = (error) => {
-      console.error(`Error in ${sectionName}:`, error);
-      setHasError(true);
-    };
-
-    window.addEventListener('error', errorHandler);
-    return () => window.removeEventListener('error', errorHandler);
-  }, [sectionName]);
-
-  if (hasError) {
-    return (
-      <div className="w-full min-h-64 flex items-center justify-center bg-gray-900/50 rounded-lg border border-gray-700 my-8">
-        <div className="text-center text-white">
-          <div className="text-2xl mb-2">⚠️</div>
-          <p className="text-sm text-gray-300">Failed to load {sectionName}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-3 px-4 py-2 bg-[#E60076] text-white rounded-lg text-sm hover:bg-[#F361B0] transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return children;
-};
-
-const SectionLoader = ({ minHeight = '400px' }) => (
-  <div
-    className="w-full flex items-center justify-center bg-transparent"
-    style={{ minHeight }}
-  >
+// Simple loader for sections
+const SectionLoader = () => (
+  <div className="w-full min-h-64 flex items-center justify-center bg-transparent">
     <div className="flex flex-col items-center space-y-3">
       <div className="w-8 h-8 border-2 border-[#E60076] border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-gray-400 text-sm">Loading...</p>
+      <p className="text-gray-400 text-sm">Loading content...</p>
     </div>
   </div>
 );
-
-const sectionHeights = {
-  about: '500px',
-  features: '600px',
-  suggestion: '400px',
-  goals: '500px',
-  faq: '600px',
-  footer: '300px'
-};
-
-const LazySection = ({
-  sectionId,
-  isVisible,
-  component: Component,
-  sectionName,
-  ...props
-}) => {
-  const sectionHeight = sectionHeights[sectionId] || '400px';
-
-  return (
-    <div
-      id={sectionId}
-      className="w-full"
-      style={{ minHeight: isVisible ? 'auto' : sectionHeight }}
-    >
-      {!isVisible ? (
-        <SectionLoader minHeight={sectionHeight} />
-      ) : (
-        <SectionErrorBoundary sectionName={sectionName}>
-          <Suspense fallback={<SectionLoader minHeight={sectionHeight} />}>
-            <Component {...props} />
-          </Suspense>
-        </SectionErrorBoundary>
-      )}
-    </div>
-  );
-};
 
 const Home = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
-  const [visibleSections, setVisibleSections] = useState({
-    about: false,
-    features: false,
-    suggestion: false,
-    goals: false,
-    faq: false,
-    footer: false
-  });
   const [user, setUser] = useState(null);
   const [showSkeleton, setShowSkeleton] = useState(false);
+  const [sectionsLoaded, setSectionsLoaded] = useState(false);
 
-  // Check authentication - ONLY Appwrite sessions
+  // Check authentication
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -1059,12 +979,13 @@ const Home = ({ setIsLoggedIn }) => {
         setIsLoggedIn(true);
         console.log("✅ Home: User authenticated:", userData.email);
         
-        // Check if we should show skeleton (from login/signup redirect)
+        // Check if we should show skeleton
         if (localStorage.getItem('showHomeSkeleton')) {
           setShowSkeleton(true);
           setTimeout(() => {
             setShowSkeleton(false);
             localStorage.removeItem('showHomeSkeleton');
+            setLoading(false);
           }, 1200);
         } else {
           setLoading(false);
@@ -1080,40 +1001,54 @@ const Home = ({ setIsLoggedIn }) => {
     checkAuth();
   }, [navigate, setIsLoggedIn]);
 
-  // Intersection Observer for lazy loading
+  // Setup Intersection Observer for lazy loading - SIMPLIFIED VERSION
   useEffect(() => {
+    if (loading || showSkeleton) return;
+
+    console.log("🔄 Setting up Intersection Observer...");
+    
     const observerOptions = {
       root: null,
-      rootMargin: '200px',
-      threshold: 0.05
+      rootMargin: '100px',
+      threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          setVisibleSections(prev => ({
-            ...prev,
-            [sectionId]: true
-          }));
+          console.log(`🎯 Section ${sectionId} is now visible`);
+          
+          // Mark all sections as loaded after first one is visible
+          setSectionsLoaded(true);
+          
+          // You could also set individual section visibility here
+          // For now, we'll load all sections when any one becomes visible
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const lazySections = ['about', 'features', 'suggestion', 'goals', 'faq', 'footer'];
-
-    setTimeout(() => {
-      lazySections.forEach(sectionId => {
+    // Observe sections with a delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const sections = ['about', 'features', 'suggestion', 'goals', 'faq', 'footer'];
+      
+      sections.forEach(sectionId => {
         const element = document.getElementById(sectionId);
         if (element) {
+          console.log(`👀 Observing section: ${sectionId}`);
           observer.observe(element);
+        } else {
+          console.warn(`⚠️ Section not found: ${sectionId}`);
         }
       });
-    }, 100);
+    }, 500);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [loading, showSkeleton]);
 
   // Hide scroll arrow when user scrolls down
   useEffect(() => {
@@ -1214,49 +1149,49 @@ const Home = ({ setIsLoggedIn }) => {
         )}
       </motion.div>
 
-      {/* Lazy Loaded Sections */}
+      {/* Lazy Loaded Sections - SIMPLIFIED */}
       <div className="w-full">
-        <LazySection
-          sectionId="about"
-          isVisible={visibleSections.about}
-          component={About}
-          sectionName="About Section"
-        />
+        {/* About Section */}
+        <div id="about" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <About />
+          </Suspense>
+        </div>
 
-        <LazySection
-          sectionId="features"
-          isVisible={visibleSections.features}
-          component={Features}
-          sectionName="Features Section"
-        />
+        {/* Features Section */}
+        <div id="features" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <Features />
+          </Suspense>
+        </div>
 
-        <LazySection
-          sectionId="suggestion"
-          isVisible={visibleSections.suggestion}
-          component={Suggestion}
-          sectionName="Suggestion Section"
-        />
+        {/* Suggestion Section */}
+        <div id="suggestion" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <Suggestion />
+          </Suspense>
+        </div>
 
-        <LazySection
-          sectionId="goals"
-          isVisible={visibleSections.goals}
-          component={Goals}
-          sectionName="Goals Section"
-        />
+        {/* Goals Section */}
+        <div id="goals" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <Goals />
+          </Suspense>
+        </div>
 
-        <LazySection
-          sectionId="faq"
-          isVisible={visibleSections.faq}
-          component={FAQ}
-          sectionName="FAQ Section"
-        />
+        {/* FAQ Section */}
+        <div id="faq" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <FAQ />
+          </Suspense>
+        </div>
 
-        <LazySection
-          sectionId="footer"
-          isVisible={visibleSections.footer}
-          component={Footer}
-          sectionName="Footer"
-        />
+        {/* Footer Section */}
+        <div id="footer" className="w-full">
+          <Suspense fallback={<SectionLoader />}>
+            <Footer />
+          </Suspense>
+        </div>
       </div>
     </div>
   );
