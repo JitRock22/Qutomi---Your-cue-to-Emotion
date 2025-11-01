@@ -89,9 +89,9 @@ const Footer = () => {
   {
     title: "Legal",
     links: [
-      { name: "Privacy Policy", to: "#" },
-      { name: "Terms of Service", to: "#" },
-      { name: "Return Policy", to: "#" }
+      { name: "Privacy Policy", to: "/privacy-policy" },
+      { name: "Terms of Service", to: "/terms-of-service" },
+      { name: "Return Policy", to: "/return-policy" }
     ]
   }
 ].map((section, sectionIndex) => (

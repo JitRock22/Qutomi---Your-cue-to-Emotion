@@ -202,6 +202,8 @@ import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
 import ContactPage from './pages/Contact';
+import PrivacyPolicy from './pages/Privacypolicy';
+import Terms from './pages/Terms';
 import ErrorPage from './pages/Errorpage';
 import { account } from './config/appwriteConfig';
 
@@ -299,6 +301,8 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/suggestions" element={<SuggestionPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<Terms/>} />
         
         <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
       </Routes>

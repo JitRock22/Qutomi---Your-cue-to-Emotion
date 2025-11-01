@@ -108,9 +108,9 @@ const Navbar = ({ setIsLoggedIn }) => {
         >
           <div className="relative">
             <img
-              src="/favicon.ico"
+              src="/navbar_logo.png"
               alt="Qutomi Logo"
-              className="h-10 w-10 rounded-xl border border-white/20 object-cover shadow-lg"
+              className="h-10 w-10 rounded-xl object-cover shadow-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-[#F361B0]/20 to-[#00FFFF]/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300" />
           </div>
