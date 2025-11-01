@@ -83,7 +83,7 @@ const Footer = () => {
     links: [
       { name: "About Us", to: "#about" },
       { name: "Our Goals", to: "#goals" },
-      { name: "Contact", to: "#contact" }
+      { name: "Contact", to: "/contact" }
     ]
   },
   {

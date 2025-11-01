@@ -201,6 +201,7 @@ import Home from './pages/Home';
 import SuggestionPage from './pages/Suggestionpage';
 import Landing from './pages/Landing';
 import SuccessPage from './pages/Successpage';
+import ContactPage from './pages/Contact';
 import ErrorPage from './pages/Errorpage';
 import { account } from './config/appwriteConfig';
 
@@ -285,6 +286,7 @@ function App() {
           path="/reset-password"
           element={isLoggedIn ? <Navigate to="/home" /> : <ResetPassword />}
         />
+        
         <Route
           path="/login"
           element={isLoggedIn ? <Navigate to="/home" /> : <Login setIsLoggedIn={setIsLoggedIn} />}
@@ -296,6 +298,7 @@ function App() {
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/suggestions" element={<SuggestionPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         
         <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
       </Routes>

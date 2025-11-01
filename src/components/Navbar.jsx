@@ -108,7 +108,7 @@ const Navbar = ({ setIsLoggedIn }) => {
         >
           <div className="relative">
             <img
-              src="/Fevicon.png"
+              src="/favicon.ico"
               alt="Qutomi Logo"
               className="h-10 w-10 rounded-xl border border-white/20 object-cover shadow-lg"
             />
