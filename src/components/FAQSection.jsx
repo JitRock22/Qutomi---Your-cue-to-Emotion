@@ -7,28 +7,28 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "What exactly is Qutomi?",
-      answer: "Qutomi is an intelligent emotional companion that blends cutting-edge technology with emotional intelligence. It's designed to understand, react, and grow with you through playful interactions and expressive responses."
+      question: "What exactly is Qtomi?",
+      answer: "Qtomi is an intelligent emotional companion that blends cutting-edge technology with emotional intelligence. It's designed to react, and grow with you through playful interactions and expressive responses."
     },
+    // {
+    //   question: "How does Qtomi understand emotions?",
+    //   answer: "Qtomi uses advanced AI algorithms to recognize emotional cues from your interactions, voice tones, and patterns. It learns from your behavior to provide more personalized and meaningful responses over time."
+    // },
     {
-      question: "How does Qutomi understand emotions?",
-      answer: "Qutomi uses advanced AI algorithms to recognize emotional cues from your interactions, voice tones, and patterns. It learns from your behavior to provide more personalized and meaningful responses over time."
-    },
-    {
-      question: "When will Qutomi be available?",
+      question: "When will Qtomi be available?",
       answer: "We're currently in the development phase and planning to launch soon. Join our waitlist or share your suggestions to get early access and help us shape the final product!"
     },
     {
-      question: "What features will Qutomi have?",
-      answer: "Qutomi will include emotional reactions, interactive games, dynamic themes, sound interactions, productivity tools, and much more. We're constantly adding new features based on community feedback."
+      question: "What features will Qtomi have?",
+      answer: "Qtomi will include emotional reactions, interactive games, dynamic themes, sound interactions, productivity tools, and much more. We're constantly adding new features based on community feedback."
     },
     {
-      question: "How much will Qutomi cost?",
-      answer: "While final pricing is still being determined, we're committed to making Qutomi accessible. We're considering different price points and would love to hear what you're comfortable paying through our suggestion form."
+      question: "How much will Qtomi cost?",
+      answer: "While final pricing is still being determined, we're committed to making Qtomi accessible. We're considering different price points and would love to hear what you're comfortable paying through our suggestion form."
     },
     {
-      question: "Can I suggest new features for Qutomi?",
-      answer: "Absolutely! We're building Qutomi with our community. Your suggestions directly influence our development roadmap. Visit our suggestions page to share your ideas and help us create the perfect companion."
+      question: "Can I suggest new features for Qtomi?",
+      answer: "Absolutely! We're building Qtomi with our community. Your suggestions directly influence our development roadmap. Visit our suggestions page to share your ideas and help us create the perfect companion."
     }
   ];
 
@@ -96,7 +96,7 @@ const FAQSection = () => {
             </span>
           </h2>
           <p className="text-base text-gray-300 max-w-xl mx-auto leading-relaxed">
-           Curious about Qutomi? Let’s dive in.
+           Curious about Qtomi? Let’s dive in.
           </p>
         </motion.div>
 
