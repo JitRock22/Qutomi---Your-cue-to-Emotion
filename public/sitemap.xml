@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
-  <!-- Landing Page -->
+  <!-- Main Pages -->
   <url>
-    <loc>https://Qtomi.com/</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://qtomi.com/</loc>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Home Page -->
+  <!-- Content Pages (Add these as you create them) -->
   <url>
-    <loc>https://Qtomi.com/home</loc>
-    <lastmod>2025-10-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Suggestions Page -->
-  <url>
-    <loc>https://Qtomi.com/suggestions</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://qtomi.com/home</loc>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Login Page -->
   <url>
-    <loc>https://Qtomi.com/login</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://qtomi.com/experience</loc>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
 
-  <!-- Signup Page -->
   <url>
-    <loc>https://Qtomi.com/signup</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://qtomi.com/suggestions</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://qtomi.com/contact</loc>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Blog/Articles (Add when you have content) -->
+  <!-- <url>
+    <loc>https://qtomi.com/blog/emotional-robotics</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url> -->
 
 </urlset>
