@@ -91,7 +91,7 @@ const Footer = () => {
     links: [
       { name: "Privacy Policy", to: "/privacy-policy" },
       { name: "Terms of Service", to: "/terms-of-service" },
-      { name: "Return Policy", to: "/return-policy" }
+      { name: "Return Policy", to: "/refund-policy" }
     ]
   }
 ].map((section, sectionIndex) => (

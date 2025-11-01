@@ -30,7 +30,7 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEBFORM_KEY,
+          access_key: import.meta.env.VITE_WEBFORM,
           name: formData.name,
           email: formData.email,
           subject: formData.subject,

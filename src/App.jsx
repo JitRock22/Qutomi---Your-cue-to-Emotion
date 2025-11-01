@@ -205,6 +205,7 @@ import ContactPage from './pages/Contact';
 import PrivacyPolicy from './pages/Privacypolicy';
 import Terms from './pages/Terms';
 import ErrorPage from './pages/Errorpage';
+import RefundPage from './pages/Refundpolicy';
 import { account } from './config/appwriteConfig';
 
 function App() {
@@ -303,6 +304,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<Terms/>} />
+        <Route path="/refund-policy" element={<RefundPage/>} />
         
         <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
       </Routes>

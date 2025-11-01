@@ -130,9 +130,21 @@ const PrivacyPolicy = () => {
           >
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                <p className="text-green-500 font-medium text-sm">
-                  Effective November 1, 2025
+                
+                <motion.div
+                  className="w-2 h-2 bg-green-400 rounded-full"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [1, 0.7, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <p className="text-green-400 font-medium text-sm">
+                  Effective from November 1, 2025
                 </p>
               </div>
               <p className="text-gray-300 text-base leading-relaxed mb-4">

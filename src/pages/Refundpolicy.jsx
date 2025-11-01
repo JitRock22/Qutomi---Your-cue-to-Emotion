@@ -1,77 +1,72 @@
 import { motion } from 'framer-motion';
-import { FaGavel, FaUserShield, FaCreditCard, FaBox, FaCopyright, FaShieldAlt, FaFileContract, FaEnvelope, FaExclamationTriangle, FaCheck } from 'react-icons/fa';
+import { FaExclamationTriangle, FaSync, FaVideo, FaMoneyBillWave, FaShippingFast, FaEnvelope, FaBan, FaCheckCircle, FaBoxOpen, FaQrcode } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const TermsOfService = () => {
+const RefundPolicy = () => {
   const sections = [
     {
-      icon: FaGavel,
-      title: "About Qtomi",
-      content: "Qtomi is a small electronic companion gadget that reacts to user gestures and displays animations. Our website allows users to explore, sign in, and make purchases.",
-      highlight: "By accessing or purchasing from our website, you agree to these Terms of Service."
+      icon: FaBan,
+      title: "No Return or Cancellation After Delivery",
+      content: "All sales are final once the order has been shipped. We do not accept returns, cancellations, or refunds for:",
+      points: [
+        "Change of mind or preference",
+        "Accidental or duplicate orders",
+        "Cosmetic differences or packaging variations",
+        "Damage caused by misuse, mishandling, or modification"
+      ],
+      warning: true,
+      highlight: "All sales are final once the order has been shipped"
     },
     {
-      icon: FaUserShield,
-      title: "Accounts",
-      content: "Users can sign in using Google login through Appwrite authentication.",
-      points: [
-        "You are responsible for keeping your login details secure",
-        "You are responsible for any activity on your account"
+      icon: FaSync,
+      title: "Replacement for Defective Products",
+      content: "A replacement is provided only if the product arrives damaged or non-functional due to a verified manufacturing defect.",
+      conditions: [
+        { icon: FaCheckCircle, text: "You contact us within 3 days of delivery", color: "text-green-400" },
+        { icon: FaVideo, text: "You provide a clear unboxing video and order details showing the issue", color: "text-blue-400" },
+        { icon: FaBoxOpen, text: "Verified manufacturing defect confirmed by our team", color: "text-yellow-400" }
       ],
+      note: "If approved, we will ship a replacement unit — not a refund."
+    },
+    {
+      icon: FaVideo,
+      title: "Proof Requirement",
+      content: "To qualify for replacement, you must provide proper documentation:",
+      requirements: [
+        "The unboxing video must clearly show the issue at first power-on",
+        "The item must be unused and in original packaging"
+      ],
+      warning: "Requests without proper proof or submitted after 3 days will not be accepted."
+    },
+    {
+      icon: FaMoneyBillWave,
+      title: "Refunds",
+      content: "Qtomi does not issue refunds, except if:",
+      points: [
+        "A replacement cannot be provided due to stock unavailability",
+        "The product is proven defective and approved by our team"
+      ],
+      highlight: "In such rare cases, a refund will be issued to the original payment method.",
       warning: true
     },
     {
-      icon: FaCreditCard,
-      title: "Payments and Orders",
-      content: "Payments are processed securely by third-party gateways.",
+      icon: FaShippingFast,
+      title: "Shipping for Returns",
+      content: "If a return is approved for replacement, the customer must securely ship the product to the provided address.",
       points: [
-        "Qtomi does not store your card or banking details",
-        "Confirmed orders cannot be cancelled after shipment"
-      ],
-      warning: true
-    },
-    {
-      icon: FaBox,
-      title: "Product Details",
-      content: "We aim to keep all product and pricing information accurate.",
-      points: [
-        "Qtomi may update features, prices, or stock at any time without notice"
+        "Return shipping costs are borne by the customer",
+        "We cover shipping only when the error is on Qtomi's end"
       ]
     },
     {
-      icon: FaCopyright,
-      title: "Intellectual Property",
-      content: "All 3D product designs, animations, text, images, logos, software, and the Qtomi name and brand identity are owned by Qtomi and protected under copyright and trademark laws.",
+      icon: FaQrcode,
+      title: "Product Testing & Quality Assurance",
+      content: "Every Qtomi unit undergoes strict functional and visual testing before dispatch to ensure quality and performance.",
       points: [
-        "You may not copy, reproduce, or modify any of these materials without our written permission"
+        "Minor variations in animation speed, brightness, or behavior may occur between units",
+        "This is normal and not considered a defect"
       ],
-      highlight: "Protected under copyright and trademark laws"
-    },
-    {
-      icon: FaExclamationTriangle,
-      title: "Liability",
-      content: "Qtomi products are provided 'as is'.",
-      points: [
-        "We are not responsible for damage or loss caused by misuse or unauthorized modification",
-        "Our liability is limited to the product's purchase price"
-      ],
-      warning: true
-    },
-    {
-      icon: FaShieldAlt,
-      title: "Privacy",
-      content: "Your use of Qtomi is also governed by our Privacy Policy.",
-      points: [
-        "By using our site, you agree to our data handling practices"
-      ]
-    },
-    {
-      icon: FaFileContract,
-      title: "Updates",
-      content: "We may update these Terms occasionally.",
-      points: [
-        "Continued use of Qtomi means you accept the latest version"
-      ]
+      note: "Each product is carefully built and tested before shipping."
     }
   ];
 
@@ -120,9 +115,9 @@ const TermsOfService = () => {
             className="mb-8"
           >
             <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
-              Terms of Service
+              Return & Refund Policy
             </h1>
-            <div className="w-20 h-0.5 bg-gray-600 mx-auto rounded-full mb-6" />
+            <div className="w-24 h-0.5 bg-gray-600 mx-auto rounded-full mb-6" />
           </motion.div>
 
           <motion.div
@@ -148,18 +143,19 @@ const TermsOfService = () => {
                 </p>
               </div>
               <p className="text-gray-300 text-base leading-relaxed mb-4">
-                Welcome to <span className="text-[#00FFFF] font-semibold">Qtomi</span>.
-                By accessing or purchasing from our website, you agree to these Terms of Service.
+                At <span className="text-[#00FFFF] font-semibold">Qtomi</span>, each product is carefully built and tested before shipping. 
+                Because Qtomi is a small electronic companion gadget, we maintain a strict no-return and no-refund policy 
+                except for verified manufacturing defects.
               </p>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/10 border border-yellow-500/20 rounded-full">
-                <FaExclamationTriangle className="text-yellow-400 w-3 h-3" />
-                <span className="text-yellow-400 text-xs font-medium">Please read carefully</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full">
+                <FaExclamationTriangle className="text-red-400 w-3 h-3" />
+                <span className="text-red-400 text-xs font-medium">Strict policy - Please read carefully</span>
               </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Terms Sections */}
+        {/* Policy Sections */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -199,8 +195,14 @@ const TermsOfService = () => {
 
                     {/* Highlighted Text */}
                     {section.highlight && (
-                      <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded mb-3">
-                        <p className="text-blue-400 text-xs font-medium text-center">
+                      <div className={`p-3 rounded mb-3 ${
+                        section.warning 
+                          ? 'bg-red-500/10 border border-red-500/20' 
+                          : 'bg-blue-500/10 border border-blue-500/20'
+                      }`}>
+                        <p className={`text-xs font-medium text-center ${
+                          section.warning ? 'text-red-400' : 'text-blue-400'
+                        }`}>
                           {section.highlight}
                         </p>
                       </div>
@@ -210,18 +212,16 @@ const TermsOfService = () => {
 
                 {/* Points List */}
                 {section.points && (
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-3">
                     {section.points.map((point, pointIndex) => (
                       <div key={pointIndex} className={`flex items-start gap-2 p-2 rounded ${
                         section.warning 
                           ? 'bg-red-500/5 border border-red-500/10' 
                           : 'bg-white/5 border border-white/10'
                       }`}>
-                        {section.warning ? (
-                          <FaExclamationTriangle className="text-red-400 w-3 h-3 mt-0.5 flex-shrink-0" />
-                        ) : (
-                          <FaCheck className="text-green-400 w-3 h-3 mt-0.5 flex-shrink-0" />
-                        )}
+                        <FaExclamationTriangle className={`w-3 h-3 mt-0.5 flex-shrink-0 ${
+                          section.warning ? 'text-red-400' : 'text-gray-400'
+                        }`} />
                         <span className={`text-sm ${
                           section.warning ? 'text-red-300' : 'text-gray-400'
                         }`}>
@@ -229,6 +229,51 @@ const TermsOfService = () => {
                         </span>
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {/* Conditions List */}
+                {section.conditions && (
+                  <div className="space-y-2 mb-3">
+                    {section.conditions.map((condition, conditionIndex) => (
+                      <div key={conditionIndex} className="flex items-center gap-2 p-2 bg-green-500/5 border border-green-500/10 rounded">
+                        <condition.icon className={`w-3 h-3 ${condition.color}`} />
+                        <span className="text-green-300 text-sm">{condition.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Requirements List */}
+                {section.requirements && (
+                  <div className="space-y-2 mb-3">
+                    {section.requirements.map((requirement, reqIndex) => (
+                      <div key={reqIndex} className="flex items-center gap-2 p-2 bg-blue-500/5 border border-blue-500/10 rounded">
+                        <FaCheckCircle className="text-blue-400 w-3 h-3 flex-shrink-0" />
+                        <span className="text-blue-300 text-sm">{requirement}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Note Text */}
+                {section.note && (
+                  <div className="p-3 bg-green-500/10 border border-green-500/20 rounded">
+                    <p className="text-green-400 text-xs font-medium text-center">
+                      {section.note}
+                    </p>
+                  </div>
+                )}
+
+                {/* Warning Text */}
+                {section.warning && !section.highlight && (
+                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded">
+                    <div className="flex items-start gap-2">
+                      <FaExclamationTriangle className="text-red-400 w-3 h-3 mt-0.5 flex-shrink-0" />
+                      <p className="text-red-300 text-xs font-medium">
+                        {section.warning}
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>
@@ -246,10 +291,10 @@ const TermsOfService = () => {
           <div className="bg-white/3 border border-white/10 rounded-lg p-6 max-w-2xl mx-auto mb-6">
             <div className="flex items-center justify-center gap-3 mb-3">
               <FaEnvelope className="text-[#00FFFF] w-4 h-4" />
-              <h3 className="text-lg font-semibold text-white">Contact Information</h3>
+              <h3 className="text-lg font-semibold text-white">Replacement Requests</h3>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              For any questions or concerns about these Terms of Service
+              For verified defect or replacement requests, please contact us within 3 days of delivery
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#00FFFF]/10 border border-[#00FFFF]/20 rounded-lg">
               <FaEnvelope className="text-[#00FFFF] w-3 h-3" />
@@ -264,18 +309,18 @@ const TermsOfService = () => {
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-200"
               >
-                <span>Contact Us</span>
+                <span>Contact Support</span>
                 <FaEnvelope className="w-3 h-3" />
               </motion.button>
             </Link>
-            <Link to="/privacy-policy">
+            <Link to="/terms">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-200"
               >
-                <span>Privacy Policy</span>
-                <FaShieldAlt className="w-3 h-3" />
+                <span>Terms of Service</span>
+                <FaExclamationTriangle className="w-3 h-3" />
               </motion.button>
             </Link>
           </div>
@@ -290,10 +335,10 @@ const TermsOfService = () => {
         >
           <div className="border-t border-white/10 pt-6">
             <p className="text-gray-500 text-xs">
-              © 2025 Qtomi Inc. • Terms of Service • Version 1.0
+              © 2025 Qtomi Inc. • Return & Refund Policy • Version 1.0
             </p>
             <p className="text-gray-600 text-xs mt-1">
-              By using our services, you acknowledge that you have read, understood, and agree to be bound by these terms.
+              Due to the electronic nature of our products, we maintain strict quality control and limited return options.
             </p>
           </div>
         </motion.div>
@@ -302,4 +347,4 @@ const TermsOfService = () => {
   );
 };
 
-export default TermsOfService;
+export default RefundPolicy;
