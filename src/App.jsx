@@ -206,6 +206,7 @@ import PrivacyPolicy from './pages/Privacypolicy';
 import Terms from './pages/Terms';
 import ErrorPage from './pages/Errorpage';
 import RefundPage from './pages/Refundpolicy';
+import { Analytics } from '@vercel/analytics/react';
 import { account } from './config/appwriteConfig';
 
 function App() {
@@ -308,6 +309,7 @@ function App() {
         
         <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
